@@ -1,0 +1,20 @@
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=239.9 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=239.9 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=239.9 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=239.9 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=239.9 arm=0.0 target=0.0
+I2C floating: SDA=1 SCL=1
+I2C pulldown: SDA=0 SCL=1
+I2C pullup: SDA=1 SCL=1
+I2C recovery: pulses=0 SCL_released=1
+I2C rate=100000 addr36_error=2 angleOK=0 statusOK=0 status=00 deg=239.85
+I2C rate=50000 addr36_error=2 angleOK=0 statusOK=0 status=00 deg=239.85
+I2C rate=10000 addr36_error=2 angleOK=0 statusOK=0 status=00 deg=239.85
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=239.9 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=239.9 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=239.9 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=239.9 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=239.9 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=239.9 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=239.9 arm=0.0 target=0.0
+s

@@ -1,0 +1,149 @@
+# ============================================================================
+#  chariot — .gitignore
+#  ESP32 + AS5600 + SimpleFOC 投掷杆项目（Obsidian 子库）
+#
+#  必须保留的"核心文件"（不要被下面的规则误伤）：
+#    outputs/PS2Catapult/PS2Catapult.ino   —— 唯一的真源码（带中文注释）
+#    outputs/*.md                           —— 实现说明 / 阻塞清单 / 线路与烧录记录
+#    outputs/*.txt                          —— 原始串口日志（实测证据，不删）
+#    work/serial_test.py                    —— 串口采集脚本（因此不整体忽略 work/）
+#
+#  被忽略的主体：work/build-ps2|build-stage1|build-stage2（约 100 MB，占全库
+#  105 MB 的 95%），全部可由 arduino-cli 重新编译生成，不含任何原始信息。
+#  注：Stage1/Stage2 的源码正本不在本库，而在 D:\dsh\1001\ESP小车项目\firmware\，
+#      所以这里忽略构建目录不会丢失源码。
+# ============================================================================
+
+# ---------- 1. Arduino / arduino-cli 构建输出目录 ----------
+# 本项目实际的三套构建目录
+build-ps2/
+build-stage1/
+build-stage2/
+# 兜底：以后新增的 stage / 变体，以及 Arduino IDE、PlatformIO、ESP-IDF 默认产物
+build-*/
+build/
+.pio/
+.pioenvs/
+.piolibdeps/
+.pio/libdeps/
+platformio/
+cmake-build-*/
+out/
+Debug/
+Release/
+x64/
+*.pio-build/
+
+# ---------- 2. 编译中间件与派生文件 ----------
+# 目标文件、依赖、静态库
+*.o
+*.obj
+*.lo
+*.d
+*.libsdetect.d
+*.a
+*.lib
+*.exp
+*.pdb
+*.ilk
+# 链接与镜像产物
+*.elf
+*.map
+*.hex
+*.su
+*.lst
+*.sym
+*.dis
+# ESP32 分区 / 引导 / 烧录派生镜像（分区表正本 *.csv 若自己写请勿忽略，
+# 本库里的 partitions.csv 只是构建目录内的自动生成副本）
+*.merged
+*.merged.bin
+*_flashed.bin
+boot_app0.bin
+*.partitions.bin
+*.bootloader.bin
+*.bin.tmp
+# arduino-cli / ESP-IDF 的构建元数据
+compile_commands.json
+build.options.json
+includes.cache
+libraries.cache
+file_opts
+flash_args
+flash_project_args
+flasher_args.json
+sdkconfig
+sdkconfig.old
+*.cache
+build_opt.h
+
+# ---------- 3. Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+ENV/
+.python-version
+.mypy_cache/
+.pytest_cache/
+.ipynb_checkpoints/
+*.egg-info/
+dist/
+.eggs/
+
+# ---------- 4. Obsidian ----------
+# 只忽略工作区/缓存状态，保留插件、主题与配置本身
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/workspace/
+.obsidian/cache
+.obsidian/.obsidian-cache
+.trash/
+.smart-env/
+# 同步冲突副本
+*conflict*
+*conflicted copy*
+*.sync-conflict-*
+
+# ---------- 5. 编辑器 / IDE ----------
+.vscode/
+!.vscode/extensions.json
+!.vscode/launch.json
+.idea/
+*.iml
+*.ipr
+*.iws
+*.swp
+*.swo
+*~
+\#*\#
+.\#*
+.history/
+*.code-workspace
+
+# ---------- 6. 操作系统与临时文件 ----------
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+*.lnk
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+*.part
+*.crdownload
+*.log
+~$*
+nul
+NUL
