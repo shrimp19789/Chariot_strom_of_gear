@@ -1,0 +1,36 @@
+日期：2026-10-06（Asia/Shanghai）
+串口：COM9，CH340，VID:PID=1A86:7523，115200 baud
+第一次：serial_read(reset=false, seconds=5)，未发命令。
+--- COM9 @ 115200 ---
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+
+第二次：serial_send(commands=d, reset=false, seconds=5)。d 为当前 PS2Catapult 的禁用态编码器诊断，不是电机运动命令。
+--- COM9 @ 115200 ---
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+I2C floating: SDA=1 SCL=1
+I2C pulldown: SDA=0 SCL=1
+I2C pullup: SDA=1 SCL=1
+I2C recovery: pulses=0 SCL_released=1
+I2C rate=100000 addr36_error=2 angleOK=0 statusOK=0 status=00 deg=153.02
+I2C rate=50000 addr36_error=2 angleOK=0 statusOK=0 status=00 deg=153.02
+I2C rate=10000 addr36_error=2 angleOK=0 statusOK=0 status=00 deg=153.02
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+state=0 PS2=1 mode=41 buttons=0000 enc=0 magnetOK=0 sensorDeg=153.0 arm=0.0 target=0.0
+
+未烧录，未主动复位，未发送校准/使能/运动命令。串口工具已关闭连接。

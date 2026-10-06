@@ -1,0 +1,12 @@
+2026-10-06：用户提供电机额定3–6V、空载电流140mA；此前VM为12V，要求降低后用户回复3V。限流值、启动/堵转电流未提供。
+沿用四轮架空、投掷动力断开确认。STOP/STATUS检查正常后执行JOG FL 64 400。
+--- COM9 @ 115200 ---
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+OK JOG FL duty=64 duration=400ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=12,0,0,0
+JOG DONE/STOP; LOCKED
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+指令执行并自动撤销STBY；实际转动待用户反馈。低占空比不转不能单独证明硬件故障。

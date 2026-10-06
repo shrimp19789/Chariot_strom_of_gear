@@ -1,0 +1,66 @@
+日期：2026-10-06（Asia/Shanghai）。用户确认已完成前述隔离/断电检查，短路检查通过。
+
+芯片识别
+
+串口: COM9  (用户指定)
+芯片: ESP32-D0WD-V3 (revision v3.1)
+Flash: 4 MB
+MAC: 08:a6:f7:a8:95:94
+建议 FQBN: esp32:esp32:esp32
+
+烧录结果
+
+烧录成功
+串口: COM9 (用户指定)
+FQBN: esp32:esp32:esp32:UploadSpeed=115200
+
+Writing at 0x00043b71 [====================>         ]  72.6% 114688/158072 bytes... 
+
+Writing at 0x00049472 [=======================>      ]  82.9% 131072/158072 bytes... 
+
+Writing at 0x0004ef92 [==========================>   ]  93.3% 147456/158072 bytes... 
+
+Writing at 0x00052c30 [==============================] 100.0% 158072/158072 bytes... 
+Wrote 273456 bytes (158072 compressed) at 0x00010000 in 14.3 seconds (152.9 kbit/s).
+Verifying written data...
+Hash of data verified.
+
+Hard resetting via RTS pin...
+
+硬件复位、STATUS、STOP、非法命令及超长行测试
+
+--- COM9 @ 115200 ---
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:1
+load:0x3fff0030,len:4876
+ho 0 tail 12 room 4
+load:0x40078000,len:16532
+load:0x40080400,len:3500
+entry 0x400805b4
+BOOT TB6612LogicCheck v1 reset_reason=1
+STAGE2 ONLY: keep VM disconnected. Measure VCC/PWM/STBY at BOTH boards.
+Readback is digital MCU-pad state, not terminal voltage or continuity proof.
+STATUS TB6612LogicCheck v1 uptime_ms=21 STBY33=0 EN14=0 pads_low=1 motion=UNAVAILABLE
+FL_IN1 GPIO16=0 FL_IN2 GPIO17=0 RL_IN1 GPIO18=0 RL_IN2 GPIO19=0 FR_IN1 GPIO23=0 FR_IN2 GPIO32=0 RR_IN1 GPIO15=0 RR_IN2 GPIO5=0
+STATUS TB6612LogicCheck v1 uptime_ms=949 STBY33=0 EN14=0 pads_low=1 motion=UNAVAILABLE
+FL_IN1 GPIO16=0 FL_IN2 GPIO17=0 RL_IN1 GPIO18=0 RL_IN2 GPIO19=0 FR_IN1 GPIO23=0 FR_IN2 GPIO32=0 RR_IN1 GPIO15=0 RR_IN2 GPIO5=0
+OK STOP; outputs disabled
+STATUS TB6612LogicCheck v1 uptime_ms=960 STBY33=0 EN14=0 pads_low=1 motion=UNAVAILABLE
+FL_IN1 GPIO16=0 FL_IN2 GPIO17=0 RL_IN1 GPIO18=0 RL_IN2 GPIO19=0 FR_IN1 GPIO23=0 FR_IN2 GPIO32=0 RR_IN1 GPIO15=0 RR_IN2 GPIO5=0
+ERR supported commands: STATUS, STOP; outputs disabled
+ERR line too long; outputs disabled
+STATUS TB6612LogicCheck v1 uptime_ms=1000 STBY33=0 EN14=0 pads_low=1 motion=UNAVAILABLE
+FL_IN1 GPIO16=0 FL_IN2 GPIO17=0 RL_IN1 GPIO18=0 RL_IN2 GPIO19=0 FR_IN1 GPIO23=0 FR_IN2 GPIO32=0 RR_IN1 GPIO15=0 RR_IN2 GPIO5=0
+STATUS TB6612LogicCheck v1 uptime_ms=2000 STBY33=0 EN14=0 pads_low=1 motion=UNAVAILABLE
+FL_IN1 GPIO16=0 FL_IN2 GPIO17=0 RL_IN1 GPIO18=0 RL_IN2 GPIO19=0 FR_IN1 GPIO23=0 FR_IN2 GPIO32=0 RR_IN1 GPIO15=0 RR_IN2 GPIO5=0
+STATUS TB6612LogicCheck v1 uptime_ms=3000 STBY33=0 EN14=0 pads_low=1 motion=UNAVAILABLE
+FL_IN1 GPIO16=0 FL_IN2 GPIO17=0 RL_IN1 GPIO18=0 RL_IN2 GPIO19=0 FR_IN1 GPIO23=0 FR_IN2 GPIO32=0 RR_IN1 GPIO15=0 RR_IN2 GPIO5=0
+STATUS TB6612LogicCheck v1 uptime_ms=4000 STBY33=0 EN14=0 pads_low=1 motion=UNAVAILABLE
+FL_IN1 GPIO16=0 FL_IN2 GPIO17=0 RL_IN1 GPIO18=0 RL_IN2 GPIO19=0 FR_IN1 GPIO23=0 FR_IN2 GPIO32=0 RR_IN1 GPIO15=0 RR_IN2 GPIO5=0
+
+
+注意：POWERON_RESET 是本次RTS硬件复位报告，不是人工拔电冷启动证据。未接通VM或执行运动；串口已关闭。

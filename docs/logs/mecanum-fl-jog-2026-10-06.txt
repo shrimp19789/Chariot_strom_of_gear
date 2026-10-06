@@ -1,0 +1,13 @@
+用户确认四轮架空、投掷动力断开，要求开始测试。
+先STOP/STATUS确认hw=1、ps=1、buttons=0000、STBY=0。
+发送JOG FL 64 400，正向目标占空比64/255，含软启动，总时长400ms。
+--- COM9 @ 115200 ---
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+OK JOG FL duty=64 duration=400ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=9,0,0,0
+JOG DONE/STOP; LOCKED
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+软件输出与结束撤销STBY已观察到；实际轮子转动、方向、电流、温升等待现场反馈。

@@ -1,0 +1,71 @@
+日期：2026-10-06（Asia/Shanghai）
+
+MecanumPS2 编译成功；主机混控/换向测试通过。
+
+UPLOAD
+
+烧录成功
+串口: COM9 (用户指定)
+FQBN: esp32:esp32:esp32:UploadSpeed=115200
+
+Writing at 0x000495e1 [=====================>        ]  73.9% 131072/177376 bytes... 
+
+Writing at 0x0004f67a [=======================>      ]  83.1% 147456/177376 bytes... 
+
+Writing at 0x000550ec [==========================>   ]  92.4% 163840/177376 bytes... 
+
+Writing at 0x00059f30 [==============================] 100.0% 177376/177376 bytes... 
+Wrote 302896 bytes (177376 compressed) at 0x00010000 in 16.0 seconds (151.5 kbit/s).
+Verifying written data...
+Hash of data verified.
+
+Hard resetting via RTS pin...
+
+启动与STOP
+
+--- COM9 @ 115200 ---
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:1
+load:0x3fff0030,len:4876
+ho 0 tail 12 room 4
+load:0x40078000,len:16532
+load:0x40080400,len:3500
+entry 0x400805b4
+E (8) task_wdt: esp_task_wdt_init(517): TWDT already initialized
+BOOT MecanumPS2 v1 LOCKED; AS5600 unused; catapult disabled
+STATUS | STOP | PS2 | JOG FL/RL/FR/RR signedDuty(1..76) ms(50..800)
+STATUS hw=1 ps=0 mode=00 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+OK STOP LOCKED
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+
+
+超限占空比/时长/未知命令拒绝验证
+
+--- COM9 @ 115200 ---
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+ERR command/interlock; LOCKED
+ERR command/interlock; LOCKED
+ERR command/interlock; LOCKED
+OK STOP LOCKED
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+
+
+尚未发送有效JOG、PS2解锁或运动命令；等待用户确认四轮架空及电机/VM/限流参数。

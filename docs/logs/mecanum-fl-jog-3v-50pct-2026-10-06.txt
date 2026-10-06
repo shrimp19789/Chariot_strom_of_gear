@@ -1,0 +1,13 @@
+用户要求假定接线正确继续测试；沿用VM=3V、架空、投掷断电条件。
+v1.1编译烧录并校验成功：单轮JOG上限128，PS2上限76不变。
+执行JOG FL 128 400，目标50.2%，含软启动；400ms短于从0升到128约430ms，不能称为保持50%达400ms。
+--- COM9 @ 115200 ---
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+OK JOG FL duty=128 duration=400ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=96,0,0,0
+JOG DONE/STOP; LOCKED
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+已自动停止并锁定，实际转动等待现场反馈。
