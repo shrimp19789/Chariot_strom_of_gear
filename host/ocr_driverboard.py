@@ -12,7 +12,9 @@ import cv2
 import numpy as np
 from rapidocr_onnxruntime import RapidOCR
 
-PROJ = r'D:\dsh\1001\ESP小车项目'
+# 仓库根 = 本文件的上上级目录; 实物照片与 OCR 文本都在 docs/assets 下
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJ = os.path.join(_ROOT, 'docs', 'assets')
 # 司机板/降压模块那几张 (17:41 拍摄的大图)
 TARGETS = [
     '8d026409f15da554c0698b05e2c8f11a.jpg',

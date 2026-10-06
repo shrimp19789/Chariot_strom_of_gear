@@ -1,8 +1,10 @@
 # PS2 遥控投掷杆：实现与调试
 
+> 本记录写于仓库重组前。源码现位于 `firmware/catapult/PS2Catapult/PS2Catapult.ino`，日志在 `docs/logs/`。
+
 ## 交付范围
 
-带中文注释的 Arduino 源码：PS2Catapult/PS2Catapult.ino。ESP32 core 3.3.12、Simple FOC 2.4.0；无需安装 PS2X 库。采用通用 PS2 数字按键协议，TK-PS2A 型号的厂家协议资料未查到，需实机验证，并非已确认兼容。
+带中文注释的 Arduino 源码：`firmware/catapult/PS2Catapult/PS2Catapult.ino`。ESP32 core 3.3.12、Simple FOC 2.4.0；无需安装 PS2X 库。采用通用 PS2 数字按键协议，TK-PS2A 型号的厂家协议资料未查到，需实机验证，并非已确认兼容。
 
 默认 CONFIG_CONFIRMED=false、SUPPLY_VOLTAGE=0：驱动EN保持低，仅打印PS2与编码器状态。仅用于低速原型验证，不代表已实现可靠投掷或硬件安全限位。
 

@@ -3,12 +3,12 @@
 """
 serial_watch.py —— 打开串口, 复位开发板, 把输出打印出来
 
-给 flash.ps1 做烧录后验证用, 也可以单独用来盯着串口看。
+给 tools/flash-catapult.ps1 做烧录后验证用, 也可以单独用来盯着串口看。
 
-用法:
-    python serial_watch.py --port COM9 --seconds 8
-    python serial_watch.py --port COM9 --seconds 8 --no-reset
-    python serial_watch.py --port COM9 --seconds 10 --send "c"
+用法（在仓库根目录下执行）:
+    python host\serial_watch.py --port COM9 --seconds 8
+    python host\serial_watch.py --port COM9 --seconds 8 --no-reset
+    python host\serial_watch.py --port COM9 --seconds 10 --send "c"
 """
 
 import argparse

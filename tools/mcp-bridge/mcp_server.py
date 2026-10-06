@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-codex-arduino-bridge —— 让 Codex 直接操作串口与 Arduino 工具链的 MCP 服务器
+Codex 串口 / Arduino MCP 桥（tools/mcp-bridge）—— 让 Codex 直接操作串口与 Arduino 工具链
 
 它做什么
 --------
@@ -19,7 +19,7 @@ codex-arduino-bridge —— 让 Codex 直接操作串口与 Arduino 工具链的
 
 本机路径默认值(可用环境变量覆盖):
     ARDUINO_PORTABLE_HOME    默认 D:\\Download\\arduino
-    ARDUINO_SKETCH_ROOT      默认 D:\\dsh\\1001   (相对路径的解析基准)
+    ARDUINO_SKETCH_ROOT      默认本仓库根目录   (相对路径的解析基准)
 """
 
 import json
@@ -55,7 +55,9 @@ READ_ONLY = ToolAnnotations(read_only_hint=True, idempotent_hint=True)
 # 路径配置
 # ---------------------------------------------------------------------------
 ARDUINO_HOME = os.environ.get("ARDUINO_PORTABLE_HOME", r"D:\Download\arduino")
-SKETCH_ROOT = os.environ.get("ARDUINO_SKETCH_ROOT", r"D:\dsh\1001")
+# 默认以仓库根作为相对路径的解析基准 (本文件在 tools/mcp-bridge/ 下, 上三级即仓库根)
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+SKETCH_ROOT = os.environ.get("ARDUINO_SKETCH_ROOT", _REPO_ROOT)
 
 ARDUINO_CLI = os.path.join(
     ARDUINO_HOME, "resources", "app", "lib", "backend", "resources", "arduino-cli.exe")

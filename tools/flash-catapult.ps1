@@ -13,12 +13,12 @@
         所以本脚本先问 esptool 要答案, 再用答案决定编译目标。
 
 .EXAMPLE
-    .\flash.ps1 -List                 # 只看串口和芯片, 什么都不烧
-    .\flash.ps1                       # 烧第一阶段 AS5600 测试 (默认)
-    .\flash.ps1 -Stage 2              # 烧第二阶段 FOC 闭环测试
-    .\flash.ps1 -CompileOnly          # 只编译不烧录
-    .\flash.ps1 -SkipVerify           # 烧完不去读串口
-    .\flash.ps1 -UploadSpeed 115200   # 上传老是失败时降速重试
+    .\flash-catapult.ps1 -List                 # 只看串口和芯片, 什么都不烧
+    .\flash-catapult.ps1                       # 烧第一阶段 AS5600 测试 (默认)
+    .\flash-catapult.ps1 -Stage 2              # 烧第二阶段 FOC 闭环测试
+    .\flash-catapult.ps1 -CompileOnly          # 只编译不烧录
+    .\flash-catapult.ps1 -SkipVerify           # 烧完不去读串口
+    .\flash-catapult.ps1 -UploadSpeed 115200   # 上传老是失败时降速重试
 #>
 [CmdletBinding()]
 param(
@@ -48,8 +48,8 @@ $Cli         = Join-Path $ArduinoHome 'resources\app\lib\backend\resources\ardui
 $ConfigFile  = Join-Path $ArduinoHome 'data\arduino-cli.yaml'
 $Esptool     = Join-Path $ArduinoHome 'data\packages\esp32\tools\esptool_py\5.3.1\esptool.exe'
 $ProjectRoot = Split-Path $PSScriptRoot -Parent
-$FirmwareDir = Join-Path $ProjectRoot 'firmware'
-$SerialWatch = Join-Path $PSScriptRoot 'serial_watch.py'
+$FirmwareDir = Join-Path $ProjectRoot 'firmware\catapult'
+$SerialWatch = Join-Path $ProjectRoot 'host\serial_watch.py'
 
 $SketchName = if ($Stage -eq '1') { 'Stage1_AS5600Test' } else { 'Stage2_FOCClosedLoop' }
 $SketchPath = Join-Path $FirmwareDir $SketchName
@@ -211,7 +211,7 @@ if (-not $Port) {
             $name = if ($c.Friendly) { $c.Friendly } else { '(无描述)' }
             Write-Host ("  {0,-6} 得分={1,-5} {2}" -f $c.Address, $c.Score, $name)
         }
-        throw "请用 -Port COMx 手动指定要烧录的串口 (例如 .\flash.ps1 -Stage $Stage -Port COM9)"
+        throw "请用 -Port COMx 手动指定要烧录的串口 (例如 .\flash-catapult.ps1 -Stage $Stage -Port COM9)"
     }
 
     $Port = $best.Address
@@ -280,7 +280,7 @@ if ($LASTEXITCODE -ne 0) {
     if (-not $CompileOnly) {
         Write-Host ''
         Write-Host '编译或烧录失败。如果错误发生在下载阶段(而不是编译阶段),' -ForegroundColor Yellow
-        Write-Host '可以试试降速:  .\flash.ps1 -Stage ' -NoNewline -ForegroundColor Yellow
+        Write-Host '可以试试降速:  .\flash-catapult.ps1 -Stage ' -NoNewline -ForegroundColor Yellow
         Write-Host $Stage -NoNewline -ForegroundColor Yellow
         Write-Host ' -UploadSpeed 115200' -ForegroundColor Yellow
     }

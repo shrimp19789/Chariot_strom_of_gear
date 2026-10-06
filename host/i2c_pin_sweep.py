@@ -8,7 +8,7 @@ i2c_pin_sweep.py —— 远程扫不同的 I2C 引脚组合, 找 AS5600 到底�
 
 先扫 (22,21) 是为了验证一个很常见的故障: 【SDA/SCL 接反了】。
 
-用法:  python i2c_pin_sweep.py --port COM9
+用法（在仓库根目录下执行）:  python host\i2c_pin_sweep.py --port COM9
 """
 
 import argparse

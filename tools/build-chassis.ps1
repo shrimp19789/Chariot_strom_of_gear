@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    用本机那套便携版 Arduino 编译 / 上传 esp32-motor-shield 的两个固件。
+    用本机那套便携版 Arduino 编译 / 上传 行驶底盘（奇果派 PCA9685 驱动板）的两个固件。
 
 .DESCRIPTION
     本机 Arduino 装在一个便携目录里, arduino-cli 也藏在 IDE 内部, 不在 PATH 上,
@@ -11,10 +11,10 @@
         默认路径下找不到 esp32 核心。配置里还有 board_manager 的 file:// 索引。
 
 .EXAMPLE
-    .\build.ps1 -Sketch MotorLinkCheck                # 只编译, 验证代码
-    .\build.ps1 -Sketch MotorLinkCheck -Upload        # 编译并烧录(需要插上板子)
-    .\build.ps1 -Sketch MotorDriver -Fqbn esp32:esp32:esp32doit-devkit-v1
-    .\build.ps1 -ListBoards                           # 看看当前插着哪个串口
+    .\build-chassis.ps1 -Sketch MotorLinkCheck                # 只编译, 验证代码
+    .\build-chassis.ps1 -Sketch MotorLinkCheck -Upload        # 编译并烧录(需要插上板子)
+    .\build-chassis.ps1 -Sketch MotorDriver -Fqbn esp32:esp32:esp32doit-devkit-v1
+    .\build-chassis.ps1 -ListBoards                           # 看看当前插着哪个串口
 #>
 [CmdletBinding()]
 param(
@@ -37,7 +37,7 @@ $ErrorActionPreference = 'Stop'
 $ArduinoHome = 'D:\Download\arduino'
 $Cli         = Join-Path $ArduinoHome 'resources\app\lib\backend\resources\arduino-cli.exe'
 $ConfigFile  = Join-Path $ArduinoHome 'data\arduino-cli.yaml'
-$FirmwareDir = Join-Path $PSScriptRoot '..\firmware'
+$FirmwareDir = Join-Path $PSScriptRoot '..\firmware\chassis'
 
 if (-not (Test-Path $Cli))        { throw "找不到 arduino-cli: $Cli" }
 if (-not (Test-Path $ConfigFile)) { throw "找不到 arduino-cli 配置: $ConfigFile" }

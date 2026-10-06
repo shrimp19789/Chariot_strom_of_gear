@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""OCR 工作区 ESP小车项目 里的两张实物照片, 把上面的文字读出来。
+"""OCR docs/assets 下的实物照片, 把上面的文字读出来。
 
 背景: 当前模型不支持直接看图, 所以用 OCR 把丝印/接线标注转成文字。
 """
@@ -9,7 +9,9 @@ import json
 
 from rapidocr_onnxruntime import RapidOCR
 
-PROJ = r'D:\dsh\1001\ESP小车项目'
+# 仓库根 = 本文件的上上级目录; 实物照片与 OCR 文本都在 docs/assets 下
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJ = os.path.join(_ROOT, 'docs', 'assets')
 OUT = os.path.join(PROJ, '_ocr_result.txt')
 
 engine = RapidOCR()

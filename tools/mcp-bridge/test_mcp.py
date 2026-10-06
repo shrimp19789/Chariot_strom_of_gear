@@ -5,12 +5,14 @@
 MCP 的 stdio 传输就是"一行一个 JSON-RPC 消息"。
 """
 import json
+import os
 import subprocess
 import sys
 import threading
 import time
 
-SERVER = r"D:\dsh\1001\codex-arduino-bridge\mcp_server.py"
+# 与本文件同目录的 MCP 服务器, 不写死绝对路径
+SERVER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mcp_server.py")
 
 
 def reader(proc, sink):

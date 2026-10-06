@@ -1,4 +1,4 @@
-# codex-arduino-bridge
+# Codex 串口 / Arduino MCP 桥（tools/mcp-bridge）
 
 让 **Codex CLI 直接操作本机的串口和 Arduino 工具链** 的 MCP 服务器。
 
@@ -29,7 +29,7 @@
 ```toml
 [mcp_servers.arduino]
 command = 'D:\Download\Python\python.exe'
-args = ['D:\dsh\1001\codex-arduino-bridge\mcp_server.py']
+args = ['D:\desktop\Obsidian Vaults\新建文件夹\chariot\tools\mcp-bridge\mcp_server.py']
 
 [mcp_servers.arduino.env]
 PYTHONUTF8 = "1"          # 关键: 否则 Windows 下中文会乱码
@@ -74,7 +74,7 @@ PYTHONUTF8 = "1"          # 关键: 否则 Windows 下中文会乱码
 
 - 「列一下串口，看板子插在哪个口」→ 自动调 `list_serial_ports`
 - 「这块板子是什么芯片，该用哪个 FQBN」→ 自动调 `chip_info`
-- 「编译 ESP小车项目 的 Stage1，然后烧进去」→ `arduino_compile` + `arduino_upload`
+- 「编译 catapult 的 Stage1，然后烧进去」→ `arduino_compile` + `arduino_upload`
 - 「复位板子，把串口输出前 30 行给我」→ `serial_read`
 - 「往串口发 STATUS 看看电机状态」→ `serial_send`
 
@@ -134,7 +134,7 @@ $cx = "C:\Users\jiahe\AppData\Local\OpenAI\Codex\bin\f544b3844e0f14e9\codex.exe"
 
 # 重新注册
 & $cx mcp add arduino --env PYTHONUTF8=1 -- `
-      "D:\Download\Python\python.exe" "D:\dsh\1001\codex-arduino-bridge\mcp_server.py"
+      "D:\Download\Python\python.exe" "D:\desktop\Obsidian Vaults\新建文件夹\chariot\tools\mcp-bridge\mcp_server.py"
 ```
 
 改过 `config.toml`，原始备份在：
@@ -167,8 +167,8 @@ python test_mcp.py                 # 验证 MCP 协议
 ```powershell
 & $cx mcp add arduino --env PYTHONUTF8=1 `
       --env ARDUINO_PORTABLE_HOME=D:\Download\arduino `
-      --env ARDUINO_SKETCH_ROOT=D:\dsh\1001 `
-      -- "D:\Download\Python\python.exe" "D:\dsh\1001\codex-arduino-bridge\mcp_server.py"
+      --env ARDUINO_SKETCH_ROOT=D:\desktop\Obsidian Vaults\新建文件夹\chariot `
+      -- "D:\Download\Python\python.exe" "D:\desktop\Obsidian Vaults\新建文件夹\chariot\tools\mcp-bridge\mcp_server.py"
 ```
 
 ---
@@ -180,7 +180,7 @@ python test_mcp.py                 # 验证 MCP 协议
 | 串口独占 | 同一时刻只能有一个进程占用 COM 口。Arduino IDE 的串口监视器开着时，工具会报"打不开"并提示你去关掉 |
 | 需要 pyserial | `python -m pip install pyserial`（本机已装 3.5） |
 | 需要 mcp SDK | `python -m pip install mcp`（本机已装 2.3.0；用了 v2 的 `MCPServer` API） |
-| 路径是硬编码默认值 | 与本机现状一致，但可用环境变量覆盖（见上） |
+| 路径默认值 | 默认取本仓库根目录与 `D:\Download\arduino`，都可用环境变量覆盖（见上），脚本不写死绝对路径 |
 | `arduino-cli` 必须带 `--config-file` | 本机是便携安装，数据目录在 D 盘，不带参数会找不到 esp32 核心。桥里已自动带上 |
 | 新增工具后要重启 Codex | MCP 服务器在会话启动时拉起，改代码后需要新开会话 |
 
@@ -188,7 +188,7 @@ python test_mcp.py                 # 验证 MCP 协议
 
 ## 八、和项目脚本的关系
 
-桥是**通用的**（任何 sketch 都能编译烧录），和 `ESP小车项目` 解耦。
-项目专用的诊断脚本（`i2c_pin_sweep.py`、`serial_watch.py`）没有被包进 MCP ——
+桥是**通用的**（任何 sketch 都能编译烧录），和本项目固件解耦。
+仓库里的诊断脚本（`host/i2c_pin_sweep.py`、`host/serial_watch.py`）没有被包进 MCP ——
 Codex 需要时可以直接用 shell 跑它们；如果希望它们也成为 MCP 工具，在这里加几个
 `@mcp.tool()` 包装即可。

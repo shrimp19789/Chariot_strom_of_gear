@@ -1,41 +1,27 @@
 # ============================================================================
-#  chariot — .gitignore
-#  ESP32 + AS5600 + SimpleFOC 投掷杆项目（Obsidian 子库）
+#  chariot/.gitignore
+#  ESP32 投石小车（投掷机构 + 行驶底盘 + 工具链）
 #
-#  必须保留的"核心文件"（不要被下面的规则误伤）：
-#    outputs/PS2Catapult/PS2Catapult.ino   —— 唯一的真源码（带中文注释）
-#    outputs/*.md                           —— 实现说明 / 阻塞清单 / 线路与烧录记录
-#    outputs/*.txt                          —— 原始串口日志（实测证据，不删）
-#    work/serial_test.py                    —— 串口采集脚本（因此不整体忽略 work/）
-#
-#  被忽略的主体：work/build-ps2|build-stage1|build-stage2（约 100 MB，占全库
-#  105 MB 的 95%），全部可由 arduino-cli 重新编译生成，不含任何原始信息。
-#  注：Stage1/Stage2 的源码正本不在本库，而在 D:\dsh\1001\ESP小车项目\firmware\，
-#      所以这里忽略构建目录不会丢失源码。
+#  会被提交：firmware/ 源码、host/ 脚本、tools/ 脚本、docs/ 全部文档、
+#            docs/assets/ 实物照片、docs/logs/ 原始串口日志
+#  被忽略的：build/ 构建产物（约 100 MB，可由 arduino-cli 重新生成）
 # ============================================================================
 
-# ---------- 1. Arduino / arduino-cli 构建输出目录 ----------
-# 本项目实际的三套构建目录
-build-ps2/
-build-stage1/
-build-stage2/
-# 兜底：以后新增的 stage / 变体，以及 Arduino IDE、PlatformIO、ESP-IDF 默认产物
-build-*/
+# ---------- 构建输出目录 ----------
 build/
+build-*/
 .pio/
 .pioenvs/
 .piolibdeps/
-.pio/libdeps/
 platformio/
 cmake-build-*/
 out/
 Debug/
 Release/
 x64/
-*.pio-build/
 
-# ---------- 2. 编译中间件与派生文件 ----------
-# 目标文件、依赖、静态库
+# ---------- 编译中间件与派生镜像 ----------
+# 目标文件 / 依赖 / 静态库
 *.o
 *.obj
 *.lo
@@ -54,8 +40,6 @@ x64/
 *.lst
 *.sym
 *.dis
-# ESP32 分区 / 引导 / 烧录派生镜像（分区表正本 *.csv 若自己写请勿忽略，
-# 本库里的 partitions.csv 只是构建目录内的自动生成副本）
 *.merged
 *.merged.bin
 *_flashed.bin
@@ -63,7 +47,7 @@ boot_app0.bin
 *.partitions.bin
 *.bootloader.bin
 *.bin.tmp
-# arduino-cli / ESP-IDF 的构建元数据
+# arduino-cli / ESP-IDF 构建元数据
 compile_commands.json
 build.options.json
 includes.cache
@@ -77,7 +61,7 @@ sdkconfig.old
 *.cache
 build_opt.h
 
-# ---------- 3. Python ----------
+# ---------- Python ----------
 __pycache__/
 *.py[cod]
 *$py.class
@@ -94,13 +78,12 @@ ENV/
 dist/
 .eggs/
 
-# ---------- 4. Obsidian ----------
-# 只忽略工作区/缓存状态，保留插件、主题与配置本身
+# ---------- Obsidian ----------
+# 只忽略工作区/缓存状态；插件、主题与配置本身保留
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 .obsidian/workspace/
 .obsidian/cache
-.obsidian/.obsidian-cache
 .trash/
 .smart-env/
 # 同步冲突副本
@@ -108,10 +91,8 @@ dist/
 *conflicted copy*
 *.sync-conflict-*
 
-# ---------- 5. 编辑器 / IDE ----------
+# ---------- 编辑器 / IDE ----------
 .vscode/
-!.vscode/extensions.json
-!.vscode/launch.json
 .idea/
 *.iml
 *.ipr
@@ -124,7 +105,7 @@ dist/
 .history/
 *.code-workspace
 
-# ---------- 6. 操作系统与临时文件 ----------
+# ---------- 操作系统与临时文件 ----------
 .DS_Store
 .AppleDouble
 .LSOverride

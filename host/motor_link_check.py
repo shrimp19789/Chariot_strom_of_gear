@@ -354,7 +354,7 @@ def main():
             if not args.json:
                 print()
                 print("串口有输出, 但不是 MotorLinkCheck / MotorDriver 固件。")
-                print("请先烧录本项目的固件:  tools\\build.ps1 -Sketch MotorLinkCheck -Upload")
+                print("请先烧录本项目的固件:  tools\\build-chassis.ps1 -Sketch MotorLinkCheck -Upload")
             else:
                 print(json.dumps({"ok": False, "error": "unknown_firmware"}, ensure_ascii=False))
             rc = 1
