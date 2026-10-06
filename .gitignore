@@ -46,6 +46,7 @@ x64/
 boot_app0.bin
 *.partitions.bin
 *.bootloader.bin
+*.inspect.ndjson
 *.bin.tmp
 # arduino-cli / ESP-IDF 构建元数据
 compile_commands.json
@@ -126,5 +127,7 @@ $RECYCLE.BIN/
 *.crdownload
 *.log
 ~$*
+%SystemDrive%/
+%*
 nul
 NUL
