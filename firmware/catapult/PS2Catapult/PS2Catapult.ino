@@ -14,7 +14,9 @@ constexpr int SDA_PIN=21, SCL_PIN=22;
 constexpr int IN1=25, IN2=26, IN3=27, EN=14;
 constexpr int PS_CLK=2, PS_CS=4, PS_CMD=12, PS_DAT=13;
 // GPIO2/12为启动配置脚；外设启动电平可能导致ESP32无法启动/下载。
-// 若出现启动问题，建议重新布线到 CLK=18、CMD=23，并同步修改上面参数。
+// 【2026-10-06 更正】不要再改到 18/23：那两个脚已分配给行驶底盘电机
+// (18=左后BIN1, 23=右前AIN1)，见 docs/麦轮TB6612接线与面包板排线.md。
+// 若确需避开 GPIO2/12，必须与底盘引脚表整体重排，不可只改这里。
 
 // ---------- 必须人工核对的配置 ----------
 constexpr bool CONFIG_CONFIRMED=false;

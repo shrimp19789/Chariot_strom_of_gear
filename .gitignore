@@ -9,6 +9,7 @@
 
 # ---------- 构建输出目录 ----------
 build/
+.obsidian/
 build-*/
 .pio/
 .pioenvs/
