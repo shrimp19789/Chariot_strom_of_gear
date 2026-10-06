@@ -39,7 +39,9 @@ chariot/
 │       ├── MotorLinkCheck/    链路自检 / 诊断（寄存器回读，不是只扫地址）
 │       └── MotorDriver/       简易驱动：ASCII 文本协议 + 厂家二进制协议
 ├── host/                      上位机 Python（跑在电脑上）
-│   ├── motor_link_check.py    底盘链路检测 + 电机点动
+│   ├── jog_loop.py            【排查用】连续点动底盘某一轮，让 TB6612 输出
+│   │                          近似持续，便于配万用表实测 STBY/IN/VM/OUT
+│   ├── motor_link_check.py    奇果派底盘链路检测 + 电机点动
 │   ├── serial_test.py         通用串口采集（固定截止时间，不会卡住）
 │   ├── serial_watch.py        串口观察，供 flash-catapult.ps1 内部调用
 │   ├── i2c_pin_sweep.py       扫多组 I2C 引脚，找 AS5600 在哪两个 GPIO 上
