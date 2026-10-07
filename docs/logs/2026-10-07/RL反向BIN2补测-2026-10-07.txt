@@ -1,0 +1,95 @@
+# 端口 COM4 已开；连续点动 RL duty=-128/255 每次 800ms，指令窗口占比约 93%（含软启动）
+# 共 20 秒。现在开始测电压 / 看轮子；按 Ctrl+C 结束重复发送；异常时物理断电。
+# 无电机测量：黑笔接 D1 模块 GND，红笔点指定的模块针脚。
+# VCC/PWMB 应约3.3V；RL正向时BIN1活动、BIN2低，反向时BIN2活动、BIN1低。
+# STBY/BIN1 随软启动和间隙变化；不按固定1.6V/3V判定波形或输出。
+# 运行前必须拆开所有电机动力线，投掷动力保持断开。
+
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-126,0,0
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-18,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-128,0,0
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-57,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-128,0,0
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-99,0,0
+JOG DONE/STOP; LOCKED
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-128,0,0
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-30,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-128,0,0
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-72,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-128,0,0
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-114,0,0
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-6,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-128,0,0
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-45,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-128,0,0
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-87,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-128,0,0
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+# 运行中 11s / 20s（已发 12 次点动）
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-21,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-128,0,0
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-63,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-128,0,0
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-102,0,0
+JOG DONE/STOP; LOCKED
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-128,0,0
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-36,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-128,0,0
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-75,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-128,0,0
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-117,0,0
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-9,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-128,0,0
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-51,0,0
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-128,0,0
+JOG DONE/STOP; LOCKED
+OK JOG RL duty=-128 duration=800ms
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=JOG STBY=1 duty=0,-93,0,0
+JOG DONE/STOP; LOCKED
+STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+OK JOG RL duty=-128 duration=800ms
+# 到时，共发送 23 次点动，准备停止
+OK STOP LOCKED
+---- 结束：已尝试发送 STOP，共 23 次点动；核对 OK STOP LOCKED 和 STBY=0 ----
+
