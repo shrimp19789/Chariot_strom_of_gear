@@ -1,0 +1,52 @@
+# ============================================================================
+#  chariot/.gitattributes
+#  统一行尾约定：文本文件在索引与工作区都用 LF；只有 Windows 脚本保持 CRLF。
+#
+#  为什么需要这个文件：
+#    本机 core.autocrlf=true，而仓库里约 54 个文件是工具（Codex 等）按 LF 写入
+#    工作区的，于是每次 git add 都刷「LF will be replaced by CRLF」警告，
+#    同一份文件还会被来回改行尾。这里把约定固定下来，不再依赖全局 autocrlf。
+#
+#  现状：索引中 121 个文本文件本来就已经是 LF，所以本文件不产生内容变更，
+#        只固定未来的检出方向。
+# ============================================================================
+
+# ---------- 默认：文本文件按 LF 归一化（索引与工作区一致）----------
+* text=auto eol=lf
+
+# ---------- Windows 脚本：保持 CRLF ----------
+# Windows PowerShell 5.1 对 LF-only 的 .ps1 历史上不稳；pwsh 7 无此问题，
+# 但保留 CRLF 更保险。
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# ---------- 二进制：不归一化、不作文本 diff ----------
+# 实物照片与面包板表格是硬件证据，绝不能被当文本处理
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.gif  binary
+*.webp binary
+*.bmp  binary
+*.xlsx binary
+*.pdf  binary
+# 编译产物（已被 .gitignore 忽略，此处为防误加）
+*.elf binary
+*.bin binary
+*.a   binary
+*.o   binary
+
+# ---------- 明确为文本、按 LF 归一化 ----------
+*.md       text eol=lf
+*.txt      text eol=lf
+*.ino      text eol=lf
+*.h        text eol=lf
+*.cpp      text eol=lf
+*.py       text eol=lf
+*.json     text eol=lf
+*.yml      text eol=lf
+*.yaml     text eol=lf
+*.csv      text eol=lf
+.gitignore     text eol=lf
+.gitattributes text eol=lf

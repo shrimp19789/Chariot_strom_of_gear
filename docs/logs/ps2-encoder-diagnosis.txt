@@ -1,15 +1,15 @@
-ets Jul 29 2019 12:21:46
-
-rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
-configsip: 0, SPIWP:0xee
-clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
-mode:DIO, clock div:1
-load:0x3fff0030,len:4876
-ho 0 tail 12 room 4
-load:0x40078000,len:16532
-load:0x40080400,len:3500
-entry 0x400805b4
-LOCKED: motor disabled; PS2/AS5600 diagnostics only.
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x17 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:1
+load:0x3fff0030,len:4876
+ho 0 tail 12 room 4
+load:0x40078000,len:16532
+load:0x40080400,len:3500
+entry 0x400805b4
+LOCKED: motor disabled; PS2/AS5600 diagnostics only.
 state=0 PS2=1 mode=41 buttons=0000 enc=1 magnetOK=0 sensorDeg=219.2 arm=0.0 target=0.0
 state=0 PS2=1 mode=41 buttons=0000 enc=1 magnetOK=0 sensorDeg=219.2 arm=0.0 target=0.0
 state=0 PS2=1 mode=41 buttons=0000 enc=1 magnetOK=0 sensorDeg=219.2 arm=0.0 target=0.0
