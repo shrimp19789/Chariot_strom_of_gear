@@ -1,0 +1,18 @@
+0.066s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+0.255s TX STOP
+0.259s RX OK STOP LOCKED
+0.566s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+0.629s TX STATUS
+0.639s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+1.001s TX PULSE RL -128 500
+1.010s RX OK PULSE RL duty=-128 duration=500ms fixedDuty=noRamp
+1.066s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=PULSE STBY=1 duty=0,-128,0,0
+1.126s TX STATUS
+1.136s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=PULSE STBY=1 duty=0,-128,0,0
+1.507s RX JOG DONE/STOP; LOCKED
+1.566s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+1.811s TX STOP
+1.816s RX OK STOP LOCKED
+2.059s TX STATUS
+2.067s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+2.072s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0

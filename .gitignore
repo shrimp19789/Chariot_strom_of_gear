@@ -9,6 +9,8 @@
 
 # ---------- 构建输出目录 ----------
 build/
+# host/verify_*_vm_off.py 的运行产物目录（只锚定仓库根，不影响 docs/logs/）
+/logs/
 .obsidian/
 build-*/
 .pio/
