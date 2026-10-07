@@ -1,0 +1,54 @@
+0.001s TX STOP
+0.006s RX OK STOP LOCKED
+0.373s TX INFO
+0.383s RX INFO firmware=MecanumPS2-v1.1+diag-motion polarity=1,1,-1,-1 allCap=192 allMaxMs=300
+0.398s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+0.701s TX STARTMOVEINFO
+0.714s RX STARTMOVEINFO revision=kick300-fwd-v1 startDuty=255 startMs=300 maxDuty=192 minMs=500 maxMs=30000
+0.898s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+1.012s TX COMP ON
+1.017s RX OK COMP ON; LOCKED
+1.326s TX COMPINFO
+1.338s RX COMPINFO revision=start30s-v3 enabled=1 gain=76/119,76/135,76/101,1/1 maxDuty=192 scope=motion,ramp,ps2
+1.398s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+1.898s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+2.398s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+2.898s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+3.398s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+3.898s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+4.398s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+4.898s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+5.398s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+5.898s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+6.398s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+6.647s TX STATUS
+6.657s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+6.898s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+10.365s TX STARTMOVE FWD 192 2000
+10.365s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+10.366s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+10.366s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+10.366s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+10.367s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+10.367s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+10.376s RX OK STARTMOVE FWD duty=192 duration=2000ms startDuty=255 startMs=300
+10.399s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=255,255,-255,-255
+10.527s TX STATUS
+10.538s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=255,255,-255,-255
+10.899s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=123,108,-144,-192
+11.399s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=123,108,-144,-192
+11.899s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=123,108,-144,-192
+12.378s RX JOG DONE/STOP; LOCKED
+14.545s TX STOP
+14.546s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+14.546s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+14.546s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+14.547s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+14.547s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+14.549s RX OK STOP LOCKED
+14.799s TX STATUS
+14.809s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+14.898s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+15.269s TX COMP OFF
+15.274s RX OK COMP OFF; LOCKED
+15.398s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0

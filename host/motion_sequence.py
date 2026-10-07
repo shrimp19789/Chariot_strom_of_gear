@@ -31,16 +31,31 @@ INFO = "INFO firmware=MecanumPS2-v1.1+diag-motion polarity=1,1,-1,-1 allCap=192 
 MOTIONINFO = "MOTIONINFO maxDuty=192 maxMs=10000"
 RAMPINFO = "RAMPINFO revision=triangle-v1 maxDuty=192 minMs=1000 maxMs=10000"
 FORWARDINFO = "FORWARDINFO revision=forward-30s maxDuty=192 maxMs=30000"
+TRIM_GAINS = ((76, 119), (76, 135), (76, 101), (1, 1))
+COMPINFO = ("COMPINFO revision=start30s-v3 enabled={enabled} "
+            "gain=76/119,76/135,76/101,1/1 maxDuty=192 scope=motion,ramp,ps2")
 
 
-def check_ramp_trace(samples, logical, cap):
+def wheel_duties(logical, level, compensated=False):
+    if not 0 <= level <= 192 or len(logical) != 4 or any(v not in (-1, 0, 1) for v in logical):
+        raise ValueError("Expected four wheel signs and a base duty 0..192")
+    levels = [min(192, (level * num + den // 2) // den) for num, den in TRIM_GAINS] if compensated else [level] * 4
+    return [v * value * p for v, value, p in zip(logical, levels, (1, 1, -1, -1))]
+
+
+def ramp_level(sample, logical, cap, compensated=False):
+    # Quantized per-wheel gains produce different physical PWM amplitudes.
+    for level in range(cap + 1):
+        if sample == wheel_duties(logical, level, compensated):
+            return level
+    raise RuntimeError("Ramp reported direction, wheel trim or bounds mismatch")
+
+
+def check_ramp_trace(samples, logical, cap, compensated=False):
     """Validate reported signs, synchronization, bounds and both duty slopes."""
-    signs = [v * p for v, p in zip(logical, (1, 1, -1, -1))]
     levels = []
     for sample in samples:
-        level = abs(sample[0])
-        if not 0 <= level <= cap or sample != [s * level for s in signs]:
-            raise RuntimeError("Ramp reported direction, synchronization or bounds mismatch")
+        level = ramp_level(sample, logical, cap, compensated)
         levels.append(level)
     if len(levels) < 6:
         raise RuntimeError("Too few ramp samples")
@@ -64,7 +79,10 @@ def main():
     ap.add_argument("--gap", type=float, default=5)
     ap.add_argument("--log", required=True)
     ap.add_argument("--ramp", action="store_true", help="FWD/BACK: triangular duty, 1000..10000ms")
+    ap.add_argument("--compensate", action="store_true", help="30-second startup-video hold trim; hold PWM up to 192/255")
     args = ap.parse_args()
+    if Path(args.log).exists():
+        ap.error("log already exists; choose a new filename")
     max_duration = 30000 if args.moves == ["FWD"] and not args.ramp else 10000
     if not 50 <= args.duration <= max_duration or not 1 <= args.duty <= 192:
         ap.error("duration 50..10000ms (single fixed FWD up to 30000ms); duty 1..192")
@@ -154,6 +172,14 @@ def main():
             send("RAMPINFO")
             if RAMPINFO not in collect(0.3):
                 raise RuntimeError("Ramp firmware capability mismatch")
+        mode = "ON" if args.compensate else "OFF"
+        send(f"COMP {mode}")
+        if f"OK COMP {mode}; LOCKED" not in collect(0.3):
+            raise RuntimeError("Wheel compensation mode not acknowledged")
+        send("COMPINFO")
+        if COMPINFO.format(enabled=int(args.compensate)) not in collect(0.3):
+            raise RuntimeError("Wheel compensation profile mismatch")
+        note(f"COMPENSATION {mode}; forward one-point calibration, hold PWM cap=192")
         idle()
         quiet(args.prepare)
         for index, motion in enumerate(args.moves):
@@ -161,8 +187,7 @@ def main():
                 quiet(args.gap)
             idle()
             name, logical = MOVES[motion]
-            duties = ",".join(str(v * args.duty * p)
-                              for v, p in zip(logical, (1, 1, -1, -1)))
+            duties = ",".join(map(str, wheel_duties(logical, args.duty, args.compensate)))
             note(f"BEGIN {index+1}/{len(args.moves)} {motion} {name}")
             sent_at = time.monotonic()
             control = "RAMPPULSE" if args.ramp else "MOVEPULSE"
@@ -187,10 +212,8 @@ def main():
                         reported = state(line)
                         if args.ramp and reported[0] == control:
                             sample = list(map(int, reported[2].split(",")))
-                            level = abs(sample[0])
-                            expected = [v * level * p for v, p in zip(logical, (1, 1, -1, -1))]
-                            if (sample != expected or level > args.duty or
-                                    reported[1] != str(int(level > 0))):
+                            level = ramp_level(sample, logical, args.duty, args.compensate)
+                            if reported[1] != str(int(level > 0)):
                                 raise RuntimeError("Unexpected ramp state: " + line)
                             ramp_samples.append(sample)
                             seen_active |= level > 0
@@ -223,7 +246,7 @@ def main():
             if not (seen_ack and seen_active and seen_done):
                 raise RuntimeError("Missing acceptance, active state or automatic expiry; no retry")
             if args.ramp:
-                peak = check_ramp_trace(ramp_samples, logical, args.duty)
+                peak = check_ramp_trace(ramp_samples, logical, args.duty, args.compensate)
                 note(f"RAMP checked: {len(ramp_samples)} samples, peak={peak}; rise/fall and wheel signs matched")
             send("STOP")
             collect(0.2)
@@ -235,6 +258,9 @@ def main():
             send("STOP")
             collect(0.2)
             idle()
+            send("COMP OFF")
+            if "OK COMP OFF; LOCKED" not in collect(0.3):
+                raise RuntimeError("Compensation reset not acknowledged; confirm COMPINFO before reuse")
         finally:
             ser.close()
             log = Path(args.log)
