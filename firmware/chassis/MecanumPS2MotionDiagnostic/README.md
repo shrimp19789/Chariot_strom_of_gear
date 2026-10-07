@@ -1,5 +1,7 @@
 # 两线法麦轮限时诊断固件
 
+> **导航**：[仓库总入口](../../../README.md) · [接线与面包板排线](../../../docs/麦轮TB6612接线与面包板排线.md) · [排错索引](../../../docs/diagnostics/2026-10-07/README.md) · [底盘主线固件](../MecanumPS2/README.md) · [第2步逻辑验收](../TB6612LogicCheck/README.md) · [上位机诊断脚本](../../../host/README-diagnostics.md)
+
 当前版本 `MecanumPS2-v1.1+diag-motion`。用于架空诊断，现场实测结论见 [2026-10-07 排错索引](../../../docs/diagnostics/2026-10-07/README.md)。单轮和四轮 300ms 短测可转，持续四轮联动未通过。
 
 基于原 `MecanumPS2` 的提交 `c76249435cf63825123c24b832abb2f966b35686`。IN GPIO、两线法、PS2、20kHz/8bit PWM、原 PS2 上限 76 与 JOG 上限 128 保留；新增固定占空比命令不走原爬升。装车极性为 `{1,1,-1,-1}`，顺序 FL,RL,FR,RR。投掷 EN/相线保持低，AS5600 未使用。

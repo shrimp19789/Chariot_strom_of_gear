@@ -2,16 +2,16 @@
 #  chariot/.gitignore
 #  ESP32 投石小车（投掷机构 + 行驶底盘 + 工具链）
 #
-#  会被提交：firmware/ 源码、host/ 脚本、tools/ 脚本、docs/ 全部文档、
-#            docs/assets/ 实物照片、docs/logs/ 原始串口日志
-#  被忽略的：build/ 构建产物（约 100 MB，可由 arduino-cli 重新生成）
+#  会被提交：firmware/ 源码、host/ 脚本、tools/ 脚本、tests/ 主机侧测试、
+#            docs/ 全部文档（含 assets/ 实物照片、logs/ 原始串口日志）
+#  被忽略的：build/ 构建产物（约 100 MB，可由 arduino-cli 重新生成）、
+#            .obsidian/ 本地 vault 配置
 # ============================================================================
 
 # ---------- 构建输出目录 ----------
 build/
 # host/verify_*_vm_off.py 的运行产物目录（只锚定仓库根，不影响 docs/logs/）
 /logs/
-.obsidian/
 build-*/
 .pio/
 .pioenvs/
@@ -83,11 +83,8 @@ dist/
 .eggs/
 
 # ---------- Obsidian ----------
-# 只忽略工作区/缓存状态；插件、主题与配置本身保留
-.obsidian/workspace.json
-.obsidian/workspace-mobile.json
-.obsidian/workspace/
-.obsidian/cache
+# chariot 自己就是 vault 根：.obsidian/ 整个目录都是本地 vault 配置，整目录忽略
+.obsidian/
 .trash/
 .smart-env/
 # 同步冲突副本

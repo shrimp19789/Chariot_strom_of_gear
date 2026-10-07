@@ -29,7 +29,7 @@ last_verified: 2026-10-07
 
 ```
 chariot/
-├── README.md                  ← 唯一入口（本文件）
+├── README.md                  ← 总入口（本文件）；各模块另有自己的 README.md，见 §9.1
 ├── firmware/                  固件源码，按子系统分
 │   ├── catapult/              投掷机构：2804 无刷 + AS5600 + SimpleFOC
 │   │   ├── PS2Catapult/       【当前主固件】PS2 遥控 + 蓄力 + 90° 往返
@@ -58,6 +58,8 @@ chariot/
 │   ├── flash-catapult.ps1     投掷机构：检测串口 → 认芯片 → 编译 → 烧录 → 读回
 │   ├── build-chassis.ps1      底盘：编译 / 烧录两个固件
 │   └── mcp-bridge/            Codex 的 MCP 服务器
+├── tests/                     主机侧单元测试（跑在电脑上，不上板）
+│   └── test_mecanum_drive_math.cpp  麦轮混控与斜坡，对应 MecanumPS2/DriveMath.h
 ├── docs/                      文档与资料
 │   ├── 麦轮TB6612接线与面包板排线.md      ★ 底盘接线（当前方案，接线的唯一依据）
 │   ├── 麦轮TB6612接线-两线法备选方案.md   该方案的来源、取舍与代价论证
@@ -277,15 +279,26 @@ python tools\mcp-bridge\test_mcp.py                # 验证 MCP 协议
 
 ## 9. 文档索引
 
-> **接底盘请只看第一行那份**；其余为投掷机构、工具链与历史记录。
+> **接底盘请先看 §9.1 与 §9.2 的前两行**；其余为投掷机构、工具链与历史记录。
+
+### 9.1 模块 README（与总入口互相链接）
+
+根 `README.md` 是**总入口**。下表每个目录各带自己的 `README.md`，其顶部都有返回总入口的导航块，模块之间也互相链接。
+
+| 模块 README | 内容 |
+|---|---|
+| [`firmware/chassis/MecanumPS2/README.md`](firmware/chassis/MecanumPS2/README.md) | 【底盘主线】两线法麦轮 + PS2 固件：命令表、占空比/时限、安全边界 |
+| [`firmware/chassis/MecanumPS2MotionDiagnostic/README.md`](firmware/chassis/MecanumPS2MotionDiagnostic/README.md) | 4 个架空限时诊断固件的版本 / 极性 / 命令对照与构建方式 |
+| [`firmware/chassis/TB6612LogicCheck/README.md`](firmware/chassis/TB6612LogicCheck/README.md) | 第 2 步逻辑验收固件（只回读引脚，不含使能与运动） |
+| [`host/README-diagnostics.md`](host/README-diagnostics.md) | 诊断上位机脚本：前置条件、固件配对、逐脚本用法、证据边界 |
+| [`docs/diagnostics/2026-10-07/README.md`](docs/diagnostics/2026-10-07/README.md) | ★ TB6612 四轮排错索引：现场结论表、证据边界、下一步待测 |
+
+### 9.2 文档表
 
 | 文档 | 内容 |
 |---|---|
 | **`docs/麦轮TB6612接线与面包板排线.md`** | ★ **底盘接线当前方案（两线法）**：全车 GPIO、四轮对应、面包板孔位表、分步验收。**取代旧三线法**，已对齐 §2.3 |
 | `docs/麦轮TB6612接线-两线法备选方案.md` | 该方案的来源与论证：13 根 vs 9 根、代价（用满引脚/无舵机余量）、对 I2C 扩展器的担心 |
-| **`docs/diagnostics/2026-10-07/README.md`** | ★ **TB6612 四轮排错索引（最新）**：现场结论表、证据边界、下一步待测；同目录 9 份过程记录 |
-| `firmware/chassis/MecanumPS2MotionDiagnostic/README.md` | 当前诊断固件：命令表、占空比/时限、版本对照与构建方式 |
-| `host/README-diagnostics.md` | 诊断上位机脚本的复现说明：前置条件、固件配对、逐脚本用法、证据边界 |
 | `docs/ESP32-2804-FOC-guide.md` | 原始接线与烧录指南（第一阶段/第二阶段的完整依据） |
 | `docs/投掷机构-设计与安全.md` | 原 README：硬件参数、EN 极性推导、排查表、安全须知 |
 | `docs/底盘链路检测与驱动.md` | 原 README：**奇果派板**识别过程、固件协议、三层检测能力、常见问题 |
@@ -301,6 +314,10 @@ python tools\mcp-bridge\test_mcp.py                # 验证 MCP 协议
 | `docs/assets/*.jpg` | 8 张实物照片（TB6612 引脚图、驱动板、降压模块、编码器、接线） |
 | `docs/assets/面包板.xlsx` | 面包板孔位图（a–j × 1–30，两侧 +/− 轨），配合接线文档 §5 |
 
+> **日志命名约定**：`docs/logs/` 下，单批 **≥10 份**时建 `docs/logs/<日期>/` 子目录
+> （如 `2026-10-07/` 48 份）；份数少时直接平铺（如 2026-10-06 那批 16 份）。
+> 历史日志一律不平铺改目录 —— 多份文档已有指向原路径的链接，移动会全部打断。
+>
 > 5 份实测记录写于仓库重组前，其顶部已加路径说明；文中旧路径（`D:\dsh\1001\...`）已按新布局更新。
 
 ## 10. 下一步优先级

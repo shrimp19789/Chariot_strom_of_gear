@@ -1,5 +1,7 @@
 # TB6612 麦轮诊断上位机脚本
 
+> **导航**：[仓库总入口](../README.md) · [接线与面包板排线](../docs/麦轮TB6612接线与面包板排线.md) · [排错索引](../docs/diagnostics/2026-10-07/README.md) · [底盘主线固件](../firmware/chassis/MecanumPS2/README.md) · [诊断固件对照](../firmware/chassis/MecanumPS2MotionDiagnostic/README.md) · [第2步逻辑验收](../firmware/chassis/TB6612LogicCheck/README.md)
+
 本目录下 2026-10-07 新增的 6 个脚本，用于**架空、限时**的 TB6612 四轮链路诊断。
 
 配套归档与现场结论：[`docs/diagnostics/2026-10-07/README.md`](../docs/diagnostics/2026-10-07/README.md)。

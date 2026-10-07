@@ -1,5 +1,7 @@
 # TB6612LogicCheck：第2步逻辑验收
 
+> **导航**：[仓库总入口](../../../README.md) · [接线与面包板排线](../../../docs/麦轮TB6612接线与面包板排线.md) · [排错索引](../../../docs/diagnostics/2026-10-07/README.md) · [底盘主线固件](../MecanumPS2/README.md) · [诊断固件对照](../MecanumPS2MotionDiagnostic/README.md)
+
 适用经典 ESP32，按 `docs/麦轮TB6612接线与面包板排线.md` 接线。编译目标 `esp32:esp32:esp32`，已在 Arduino ESP32 3.3.12 编译。本固件替换板上程序，原 PS2Catapult 源码不变。
 
 只用于 VM 和投掷动力断开的逻辑检查。启动首先拉低 GPIO33，再拉低投掷 EN14、四轮八个 IN 和投掷相控制25/26/27；运行中持续保持低。未使用 PWM/SimpleFOC，不测试 PS2 或 AS5600，不支持任何使能、点动、制动命令。

@@ -1,5 +1,7 @@
 # 双TB6612麦轮＋PS2独立底盘
 
+> **导航**：[仓库总入口](../../../README.md) · [接线与面包板排线](../../../docs/麦轮TB6612接线与面包板排线.md) · [排错索引](../../../docs/diagnostics/2026-10-07/README.md) · [诊断固件对照](../MecanumPS2MotionDiagnostic/README.md) · [第2步逻辑验收](../TB6612LogicCheck/README.md)
+
 适用于经典ESP32及Arduino ESP32 3.3.12。接线按 `docs/麦轮TB6612接线与面包板排线.md`：FL=16/17，RL=18/19，FR=23/32，RR=15/5；共用STBY=33及外部10kΩ下拉；两板PWMA/PWMB固定接3.3V。PS2 CLK/CS/CMD/DAT=2/4/12/13。八路LEDC通道0–7，20kHz、8位；本程序不加载SimpleFOC，不代表未来投掷集成时资源已核对。
 
 AS5600不参与控制，投掷14/25/26/27保持低。首次验证四轮架空、投掷动力断开，电机额定电压与VM匹配并采用合适限流；首次轮位、正负极性和麦轮左右手安装必须核对。

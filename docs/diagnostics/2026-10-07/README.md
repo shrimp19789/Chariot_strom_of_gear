@@ -1,5 +1,7 @@
 # TB6612 四轮排错记录（2026-10-07）
 
+> **导航**：[仓库总入口](../../../README.md) · [接线与面包板排线](../../麦轮TB6612接线与面包板排线.md) · [底盘主线固件](../../../firmware/chassis/MecanumPS2/README.md) · [诊断固件对照](../../../firmware/chassis/MecanumPS2MotionDiagnostic/README.md) · [第2步逻辑验收](../../../firmware/chassis/TB6612LogicCheck/README.md) · [上位机诊断脚本](../../../host/README-diagnostics.md)
+
 **当前结论：单轮双向和四轮 300ms 正反短测已通过现场观察；四轮持续联动仍未通过，根因未定位。** 本次归档保存诊断实现与证据，不代表整车修复或落地验收完成。
 
 ## 现场配置
