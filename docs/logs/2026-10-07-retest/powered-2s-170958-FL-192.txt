@@ -1,0 +1,36 @@
+0.000s TX STOP
+0.000s RX OK STOP LOCKED
+0.172s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+0.391s TX INFO
+0.407s RX INFO firmware=MecanumPS2-v1.1+diag-motion polarity=1,1,-1,-1 allCap=192 allMaxMs=300
+0.672s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+0.735s TX PULSEINFO
+0.735s RX PULSEINFO revision=single-2s maxDuty=255 maxMs=2000
+1.172s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+1.672s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+2.172s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+2.672s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+3.172s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+3.672s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+4.172s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+4.672s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+5.172s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+5.672s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+6.094s TX STATUS
+6.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+6.172s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+6.469s TX PULSE FL 192 2000
+6.469s RX OK PULSE FL duty=192 duration=2000ms fixedDuty=noRamp
+6.641s TX STATUS
+6.657s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=PULSE STBY=1 duty=192,0,0,0
+6.672s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=PULSE STBY=1 duty=192,0,0,0
+7.172s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=PULSE STBY=1 duty=192,0,0,0
+7.672s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=PULSE STBY=1 duty=192,0,0,0
+8.172s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=PULSE STBY=1 duty=192,0,0,0
+8.485s RX JOG DONE/STOP; LOCKED
+8.672s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+8.797s TX STOP
+8.797s RX OK STOP LOCKED
+9.047s TX STATUS
+9.063s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+9.172s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0

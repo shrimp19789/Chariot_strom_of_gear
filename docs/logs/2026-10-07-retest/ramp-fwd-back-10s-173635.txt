@@ -1,0 +1,391 @@
+0.000s PORT COM9; requested=FWD,BACK; duration=10000ms
+0.000s TX STOP
+0.016s RX OK STOP LOCKED
+0.078s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+0.391s TX INFO
+0.391s RX INFO firmware=MecanumPS2-v1.1+diag-motion polarity=1,1,-1,-1 allCap=192 allMaxMs=300
+0.578s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+0.766s TX MOTIONINFO
+0.766s RX MOTIONINFO maxDuty=192 maxMs=10000
+1.078s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+1.078s TX RAMPINFO
+1.094s RX RAMPINFO revision=triangle-v1 maxDuty=192 minMs=1000 maxMs=10000
+1.391s TX STATUS
+1.406s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+1.578s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+2.078s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+2.578s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+3.078s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+3.578s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+4.078s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+4.578s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+5.078s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+5.578s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+6.078s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+6.578s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+6.766s TX STATUS
+6.766s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+7.078s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+7.141s BEGIN 1/2 FWD 前进
+7.141s TX RAMPPULSE FWD 192 10000
+7.156s RX OK RAMPPULSE FWD duty=192 duration=10000ms profile=triangle
+7.281s TX STATUS
+7.281s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=4,4,-4,-4
+7.453s TX STATUS
+7.469s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=11,11,-11,-11
+7.578s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=16,16,-16,-16
+7.641s TX STATUS
+7.656s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=18,18,-18,-18
+7.781s TX STATUS
+7.781s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=24,24,-24,-24
+7.906s TX STATUS
+7.922s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=29,29,-29,-29
+8.031s TX STATUS
+8.031s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=33,33,-33,-33
+8.078s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=35,35,-35,-35
+8.141s TX STATUS
+8.156s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=38,38,-38,-38
+8.266s TX STATUS
+8.266s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=42,42,-42,-42
+8.391s TX STATUS
+8.406s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=47,47,-47,-47
+8.531s TX STATUS
+8.531s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=52,52,-52,-52
+8.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=54,54,-54,-54
+8.687s TX STATUS
+8.703s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=59,59,-59,-59
+8.828s TX STATUS
+8.828s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=64,64,-64,-64
+8.953s TX STATUS
+8.969s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=69,69,-69,-69
+9.078s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=73,73,-73,-73
+9.141s TX STATUS
+9.141s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=76,76,-76,-76
+9.266s TX STATUS
+9.281s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=80,80,-80,-80
+9.437s TX STATUS
+9.437s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=87,87,-87,-87
+9.562s TX STATUS
+9.562s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=92,92,-92,-92
+9.578s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=93,93,-93,-93
+9.766s TX STATUS
+9.766s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=100,100,-100,-100
+9.891s TX STATUS
+9.906s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=105,105,-105,-105
+10.016s TX STATUS
+10.016s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=109,109,-109,-109
+10.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=112,112,-112,-112
+10.141s TX STATUS
+10.156s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=114,114,-114,-114
+10.281s TX STATUS
+10.281s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=120,120,-120,-120
+10.453s TX STATUS
+10.469s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=126,126,-126,-126
+10.578s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=131,131,-131,-131
+10.656s TX STATUS
+10.672s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=134,134,-134,-134
+10.797s TX STATUS
+10.812s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=140,140,-140,-140
+10.922s TX STATUS
+10.937s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=144,144,-144,-144
+11.062s TX STATUS
+11.062s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=149,149,-149,-149
+11.078s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=150,150,-150,-150
+11.266s TX STATUS
+11.266s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=157,157,-157,-157
+11.391s TX STATUS
+11.406s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=162,162,-162,-162
+11.531s TX STATUS
+11.531s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=168,168,-168,-168
+11.578s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=169,169,-169,-169
+11.641s TX STATUS
+11.656s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=172,172,-172,-172
+11.766s TX STATUS
+11.766s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=176,176,-176,-176
+11.891s TX STATUS
+11.906s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=181,181,-181,-181
+12.031s TX STATUS
+12.031s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=187,187,-187,-187
+12.078s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=189,189,-189,-189
+12.141s TX STATUS
+12.156s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=191,191,-191,-191
+12.281s TX STATUS
+12.281s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=187,187,-187,-187
+12.406s TX STATUS
+12.422s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=182,182,-182,-182
+12.531s TX STATUS
+12.531s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=177,177,-177,-177
+12.578s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=175,175,-175,-175
+12.641s TX STATUS
+12.656s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=173,173,-173,-173
+12.766s TX STATUS
+12.766s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=168,168,-168,-168
+12.891s TX STATUS
+12.906s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=163,163,-163,-163
+13.016s TX STATUS
+13.016s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=159,159,-159,-159
+13.078s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=156,156,-156,-156
+13.141s TX STATUS
+13.156s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=154,154,-154,-154
+13.266s TX STATUS
+13.281s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=149,149,-149,-149
+13.437s TX STATUS
+13.453s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=142,142,-142,-142
+13.578s TX STATUS
+13.578s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=137,137,-137,-137
+13.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=136,136,-136,-136
+13.734s TX STATUS
+13.734s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=131,131,-131,-131
+13.859s TX STATUS
+13.875s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=126,126,-126,-126
+14.000s TX STATUS
+14.000s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=121,121,-121,-121
+14.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=117,117,-117,-117
+14.156s TX STATUS
+14.172s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=114,114,-114,-114
+14.297s TX STATUS
+14.297s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=109,109,-109,-109
+14.422s TX STATUS
+14.437s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=104,104,-104,-104
+14.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=98,98,-98,-98
+14.594s TX STATUS
+14.609s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=98,98,-98,-98
+14.719s TX STATUS
+14.734s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=93,93,-93,-93
+14.859s TX STATUS
+14.875s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=88,88,-88,-88
+14.984s TX STATUS
+14.984s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=83,83,-83,-83
+15.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=79,79,-79,-79
+15.156s TX STATUS
+15.172s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=76,76,-76,-76
+15.281s TX STATUS
+15.281s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=71,71,-71,-71
+15.453s TX STATUS
+15.469s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=65,65,-65,-65
+15.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=60,60,-60,-60
+15.594s TX STATUS
+15.609s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=59,59,-59,-59
+15.734s TX STATUS
+15.734s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=54,54,-54,-54
+15.859s TX STATUS
+15.875s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=49,49,-49,-49
+15.984s TX STATUS
+15.984s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=45,45,-45,-45
+16.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=40,40,-40,-40
+16.156s TX STATUS
+16.172s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=38,38,-38,-38
+16.281s TX STATUS
+16.281s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=33,33,-33,-33
+16.406s TX STATUS
+16.422s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=28,28,-28,-28
+16.531s TX STATUS
+16.531s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=23,23,-23,-23
+16.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=21,21,-21,-21
+16.656s TX STATUS
+16.672s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=18,18,-18,-18
+16.844s TX STATUS
+16.844s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=12,12,-12,-12
+17.031s TX STATUS
+17.031s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=4,4,-4,-4
+17.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=2,2,-2,-2
+17.156s TX STATUS
+17.156s RX JOG DONE/STOP; LOCKED
+17.156s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+17.234s RAMP checked: 90 samples, peak=191; rise/fall and wheel signs matched
+17.234s TX STOP
+17.234s RX OK STOP LOCKED
+17.453s TX STATUS
+17.469s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+17.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+17.828s END FWD; reported locked idle confirmed
+18.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+18.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+19.078s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+19.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+20.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+20.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+21.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+21.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+22.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+22.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+22.828s TX STATUS
+22.844s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+23.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+23.219s BEGIN 2/2 BACK 后退
+23.219s TX RAMPPULSE BACK 192 10000
+23.234s RX OK RAMPPULSE BACK duty=192 duration=10000ms profile=triangle
+23.359s TX STATUS
+23.375s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-4,-4,4,4
+23.500s TX STATUS
+23.500s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-10,-10,10,10
+23.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-13,-13,13,13
+23.656s TX STATUS
+23.672s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-16,-16,16,16
+23.781s TX STATUS
+23.781s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-21,-21,21,21
+23.906s TX STATUS
+23.922s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-26,-26,26,26
+24.047s TX STATUS
+24.047s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-31,-31,31,31
+24.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-33,-33,33,33
+24.156s TX STATUS
+24.172s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-35,-35,35,35
+24.281s TX STATUS
+24.281s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-40,-40,40,40
+24.406s TX STATUS
+24.422s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-45,-45,45,45
+24.547s TX STATUS
+24.547s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-50,-50,50,50
+24.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-52,-52,52,52
+24.656s TX STATUS
+24.672s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-54,-54,54,54
+24.781s TX STATUS
+24.781s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-59,-59,59,59
+24.953s TX STATUS
+24.969s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-66,-66,66,66
+25.078s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-71,-71,71,71
+25.094s TX STATUS
+25.109s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-71,-71,71,71
+25.219s TX STATUS
+25.219s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-76,-76,76,76
+25.344s TX STATUS
+25.344s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-81,-81,81,81
+25.516s TX STATUS
+25.516s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-87,-87,87,87
+25.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-90,-90,90,90
+25.656s TX STATUS
+25.672s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-93,-93,93,93
+25.781s TX STATUS
+25.797s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-98,-98,98,98
+25.922s TX STATUS
+25.937s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-103,-103,103,103
+26.062s TX STATUS
+26.078s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-108,-108,108,108
+26.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-109,-109,109,109
+26.219s TX STATUS
+26.219s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-114,-114,114,114
+26.344s TX STATUS
+26.359s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-119,-119,119,119
+26.516s TX STATUS
+26.531s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-126,-126,126,126
+26.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-129,-129,129,129
+26.641s TX STATUS
+26.656s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-131,-131,131,131
+26.781s TX STATUS
+26.781s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-136,-136,136,136
+26.906s TX STATUS
+26.922s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-141,-141,141,141
+27.031s TX STATUS
+27.031s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-145,-145,145,145
+27.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-148,-148,148,148
+27.156s TX STATUS
+27.172s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-150,-150,150,150
+27.297s TX STATUS
+27.297s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-155,-155,155,155
+27.469s TX STATUS
+27.484s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-163,-163,163,163
+27.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-167,-167,167,167
+27.641s TX STATUS
+27.656s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-169,-169,169,169
+27.766s TX STATUS
+27.766s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-173,-173,173,173
+27.891s TX STATUS
+27.906s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-179,-179,179,179
+28.016s TX STATUS
+28.016s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-183,-183,183,183
+28.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-186,-186,186,186
+28.156s TX STATUS
+28.172s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-189,-189,189,189
+28.281s TX STATUS
+28.281s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-190,-190,190,190
+28.406s TX STATUS
+28.422s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-185,-185,185,185
+28.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-178,-178,178,178
+28.594s TX STATUS
+28.609s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-177,-177,177,177
+28.719s TX STATUS
+28.734s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-172,-172,172,172
+28.859s TX STATUS
+28.875s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-167,-167,167,167
+29.000s TX STATUS
+29.000s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-162,-162,162,162
+29.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-158,-158,158,158
+29.156s TX STATUS
+29.172s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-156,-156,156,156
+29.281s TX STATUS
+29.281s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-151,-151,151,151
+29.406s TX STATUS
+29.422s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-146,-146,146,146
+29.531s TX STATUS
+29.531s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-142,-142,142,142
+29.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-139,-139,139,139
+29.703s TX STATUS
+29.719s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-135,-135,135,135
+29.828s TX STATUS
+29.828s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-130,-130,130,130
+29.953s TX STATUS
+29.969s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-125,-125,125,125
+30.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-120,-120,120,120
+30.094s TX STATUS
+30.109s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-120,-120,120,120
+30.219s TX STATUS
+30.234s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-115,-115,115,115
+30.391s TX STATUS
+30.406s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-109,-109,109,109
+30.531s TX STATUS
+30.531s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-103,-103,103,103
+30.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-101,-101,101,101
+30.656s TX STATUS
+30.656s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-99,-99,99,99
+30.797s TX STATUS
+30.797s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-93,-93,93,93
+30.953s TX STATUS
+30.969s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-87,-87,87,87
+31.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-82,-82,82,82
+31.094s TX STATUS
+31.109s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-82,-82,82,82
+31.281s TX STATUS
+31.281s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-74,-74,74,74
+31.453s TX STATUS
+31.469s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-67,-67,67,67
+31.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-62,-62,62,62
+31.594s TX STATUS
+31.609s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-62,-62,62,62
+31.719s TX STATUS
+31.734s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-57,-57,57,57
+31.906s TX STATUS
+31.922s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-50,-50,50,50
+32.047s TX STATUS
+32.047s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-45,-45,45,45
+32.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-43,-43,43,43
+32.156s TX STATUS
+32.172s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-41,-41,41,41
+32.281s TX STATUS
+32.281s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-36,-36,36,36
+32.406s TX STATUS
+32.422s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-31,-31,31,31
+32.578s TX STATUS
+32.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-24,-24,24,24
+32.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-24,-24,24,24
+32.766s TX STATUS
+32.766s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-17,-17,17,17
+32.937s TX STATUS
+32.953s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-11,-11,11,11
+33.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-5,-5,5,5
+33.094s TX STATUS
+33.109s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=RAMPPULSE STBY=1 duty=-5,-5,5,5
+33.234s RX JOG DONE/STOP; LOCKED
+33.234s RAMP checked: 90 samples, peak=190; rise/fall and wheel signs matched
+33.234s TX STOP
+33.234s RX OK STOP LOCKED
+33.500s TX STATUS
+33.500s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+33.594s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+33.891s END BACK; reported locked idle confirmed
+33.891s PASS: requested motions completed with reported state and expiry checks
+33.891s TX STOP
+33.891s RX OK STOP LOCKED
+34.094s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+34.094s TX STATUS
+34.109s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0

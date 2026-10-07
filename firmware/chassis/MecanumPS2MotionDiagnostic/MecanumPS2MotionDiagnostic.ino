@@ -5,6 +5,7 @@
 #include <esp_task_wdt.h>
 #include <string.h>
 #include "DriveMath.h"
+#include "PulseProfile.h"
 
 constexpr uint8_t STBY=33, PS_CLK=2, PS_CS=4, PS_CMD=12, PS_DAT=13;
 constexpr uint8_t PINS[4][2]={{16,17},{18,19},{23,32},{15,5}};
@@ -16,6 +17,8 @@ constexpr int JOG_CAP=128; // Preserve original JOG ceiling.
 constexpr int ALL_PULSE_CAP=192; // 75.3%, bench diagnostic only; not a current limit.
 constexpr int ALL_PULSE_MAX_MS=300; // Software timeout, not independent hardware timing.
 constexpr int MOTION_PULSE_MAX_MS=10000; // Bench observation, software timeout.
+constexpr int SINGLE_PULSE_MAX_MS=2000; // Extended single-wheel bench observation.
+constexpr int RAMP_PULSE_MIN_MS=1000, RAMP_PULSE_MAX_MS=10000;
 constexpr uint16_t UP=1<<4, RIGHT=1<<5, DOWN=1<<6, LEFT=1<<7;
 constexpr uint16_t L2=1<<8, R2=1<<9, L1=1<<10, CIRCLE=1<<13;
 constexpr uint16_t START=1<<3;
@@ -24,8 +27,9 @@ uint8_t mode=0;
 uint16_t buttons=0, goodFrames=0;
 uint32_t lastPS=0, lastPoll=0, lastTick=0, lastPrint=0, jogAt=0;
 bool remoteEnabled=false, jogging=false;
-// Fixed duty: selected <=500ms, ALL <=300ms, named motion <=10s; software timeouts.
+// Fixed duty: selected <=2000ms, ALL <=300ms, named motion <=10s; software timeouts.
 bool diagnosticPulse=false, allPulse=false, motionPulse=false;
+bool rampPulse=false;
 struct Motion { const char *name; int y, x, r; };
 constexpr Motion MOTIONS[]={
   {"FWD",1,0,0},{"BACK",-1,0,0},{"LEFT",0,-1,0},{"RIGHT",0,1,0},
@@ -50,7 +54,7 @@ void stopDrive() {
   }
 }
 void lockDrive() {
-  stopDrive(); remoteEnabled=false; jogging=false; diagnosticPulse=false; allPulse=false; motionPulse=false; neutralSeen=false;
+  stopDrive(); remoteEnabled=false; jogging=false; diagnosticPulse=false; allPulse=false; motionPulse=false; rampPulse=false; neutralSeen=false;
 }
 bool allWheelsQuiet() {
   uint32_t now=millis();
@@ -95,7 +99,7 @@ void pollPS() {
 void printStatus() {
   Serial.printf("STATUS hw=%d ps=%d mode=%02X buttons=%04X control=%s STBY=%d duty=%d,%d,%d,%d\n",
     int(hardwareOK),int(freshPS()),mode,buttons,
-    jogging?(motionPulse?"MOVEPULSE":(allPulse?"ALLPULSE":(diagnosticPulse?"PULSE":"JOG"))):(remoteEnabled?"PS2":"LOCKED"),digitalRead(STBY),
+    jogging?(rampPulse?"RAMPPULSE":(motionPulse?"MOVEPULSE":(allPulse?"ALLPULSE":(diagnosticPulse?"PULSE":"JOG")))):(remoteEnabled?"PS2":"LOCKED"),digitalRead(STBY),
     wheels[0].value,wheels[1].value,wheels[2].value,wheels[3].value);
 }
 void command() {
@@ -106,11 +110,26 @@ void command() {
   else if(!strcmp(line,"STATUS")) printStatus();
   else if(!strcmp(line,"INFO")) printInfo();
   else if(!strcmp(line,"MOTIONINFO")) Serial.printf("MOTIONINFO maxDuty=%d maxMs=%d\n",ALL_PULSE_CAP,MOTION_PULSE_MAX_MS);
+  else if(!strcmp(line,"PULSEINFO")) Serial.printf("PULSEINFO revision=single-2s maxDuty=255 maxMs=%d\n",SINGLE_PULSE_MAX_MS);
+  else if(!strcmp(line,"RAMPINFO")) Serial.printf("RAMPINFO revision=triangle-v1 maxDuty=%d minMs=%d maxMs=%d\n",ALL_PULSE_CAP,RAMP_PULSE_MIN_MS,RAMP_PULSE_MAX_MS);
   else if(!strcmp(line,"PS2")) {
     if(hardwareOK && freshPS() && buttons==0 && !jogging) {
       stopDrive(); remoteEnabled=true; neutralSeen=true;
       Serial.println("OK PS2: hold L1 + D-pad / L2 / R2; CIRCLE locks");
     } else { lockDrive(); Serial.println("ERR PS2 requires healthy link, released buttons, idle motors"); }
+  } else if(!strncmp(line,"RAMPPULSE ",10)) {
+    char name[6]={}, extra=0; int duty=0, duration=0;
+    int n=sscanf(line,"RAMPPULSE %5s %d %d %c",name,&duty,&duration,&extra);
+    int direction=!strcmp(name,"FWD")?1:(!strcmp(name,"BACK")?-1:0);
+    if(n==3 && direction && duty>=1 && duty<=ALL_PULSE_CAP &&
+       duration>=RAMP_PULSE_MIN_MS && duration<=RAMP_PULSE_MAX_MS && hardwareOK && freshPS() && buttons==0 &&
+       !remoteEnabled && !jogging && allWheelsQuiet()) {
+      stopDrive();
+      mixMecanum(direction,0,0,duty,motionTarget);
+      jogMs=duration; jogAt=millis();
+      diagnosticPulse=true; allPulse=false; motionPulse=true; rampPulse=true; jogging=true;
+      Serial.printf("OK RAMPPULSE %s duty=%d duration=%dms profile=triangle\n",name,duty,duration);
+    } else { lockDrive(); Serial.println("ERR RAMPPULSE/interlock; LOCKED"); }
   } else if(!strncmp(line,"MOVEPULSE ",10)) {
     char name[6]={}, extra=0; int duty=0, duration=0;
     int n=sscanf(line,"MOVEPULSE %5s %d %d %c",name,&duty,&duration,&extra);
@@ -142,7 +161,7 @@ void command() {
     // Use explicit signed bounds, including rejection of INT_MIN.
     int index=-1; for(int i=0;i<4;++i) if(!strcmp(wheel,LABELS[i])) index=i;
     if(n==3 && index>=0 && duty>=-255 && duty<=255 && duty!=0 &&
-       duration>=50 && duration<=500 && hardwareOK && freshPS() && buttons==0 &&
+       duration>=50 && duration<=SINGLE_PULSE_MAX_MS && hardwareOK && freshPS() && buttons==0 &&
        !remoteEnabled && !jogging && uint32_t(millis()-wheels[index].zeroAt)>=300) {
       stopDrive(); jogWheel=index; jogDuty=duty; jogMs=duration; jogAt=millis();
       diagnosticPulse=true; allPulse=false; motionPulse=false; jogging=true;
@@ -167,7 +186,10 @@ void tickDrive() {
     if(uint32_t(millis()-jogAt)>=uint32_t(jogMs) || buttons) {
       lockDrive(); Serial.println("JOG DONE/STOP; LOCKED"); return;
     }
-    if(motionPulse) for(int i=0;i<4;++i) target[i]=motionTarget[i];
+    if(rampPulse) {
+      uint32_t elapsed=millis()-jogAt;
+      for(int i=0;i<4;++i) target[i]=triangleDuty(motionTarget[i],elapsed,uint32_t(jogMs));
+    } else if(motionPulse) for(int i=0;i<4;++i) target[i]=motionTarget[i];
     else if(allPulse) for(int i=0;i<4;++i) target[i]=jogDuty;
     else target[jogWheel]=jogDuty;
   } else if(remoteEnabled && neutralSeen && (buttons&L1)) {
@@ -181,6 +203,7 @@ void tickDrive() {
     int value;
     if(diagnosticPulse) {
       value=target[i]*POLARITY[i];
+      if(wheels[i].value && !value) wheels[i].zeroAt=millis();
       wheels[i].value=value;
       if(value) wheels[i].lastSign=value>0?1:-1;
     } else value=wheels[i].step(target[i]*POLARITY[i],millis());
@@ -211,9 +234,10 @@ void setup() {
   if(result!=ESP_OK || esp_task_wdt_add_user("mecanum-loop",&watchdog)!=ESP_OK) hardwareOK=false;
   Serial.println("BOOT MecanumPS2 v1.1+diag-motion LOCKED; AS5600 unused; catapult disabled");
   Serial.println("STATUS | STOP | PS2 | JOG FL/RL/FR/RR signedDuty(1..128) ms(50..800)");
-  Serial.println("DIAGNOSTIC: PULSE FL/RL/FR/RR signedDuty(1..255) ms(50..500); fixed duty, no ramp; single wheel only");
+  Serial.println("DIAGNOSTIC: PULSE FL/RL/FR/RR signedDuty(1..255) ms(50..2000); PULSEINFO revision=single-2s; fixed duty, no ramp; single wheel only");
   Serial.println("DIAGNOSTIC: ALLPULSE signedDuty(1..192) ms(50..300); bench only");
   Serial.println("DIAGNOSTIC: MOVEPULSE FWD/BACK/LEFT/RIGHT/FL/FR/BL/BR/CCW/CW duty(1..192) ms(50..10000); bench only");
+  Serial.println("DIAGNOSTIC: RAMPPULSE FWD/BACK peakDuty(1..192) ms(1000..10000); RAMPINFO; triangle duty, no speed feedback");
   printInfo();
   printStatus();
 }

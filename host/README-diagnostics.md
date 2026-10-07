@@ -4,6 +4,10 @@
 
 本目录下 2026-10-07 新增的 6 个脚本，用于**架空、限时**的 TB6612 四轮链路诊断。
 
+2026-10-07 后续复测更新：当前 `diag-motion` 增加 `PULSEINFO revision=single-2s maxDuty=255 maxMs=2000`。`pulse_once.py --duration 2000` 可执行单轮 2 秒；默认仍为单轮 500ms、ALL 300ms，超过 500ms 必须查询到新能力才执行。示例：`python host/pulse_once.py --wheel FL --duty 192 --duration 2000 --prepare 5 --log logs/FL-2s.txt`。
+
+当前 `verify_motion_vm_off.py` 要求新固件及显式 `--log <新文件路径>`，验证四轮各自双向 2000ms、时长边界及停止互锁，拒绝覆盖已有日志。示例：`python host/verify_motion_vm_off.py --log logs/single-2s-vm-off.txt`。下文原 500ms 上限及该验证脚本的固定日志路径属于 PR 初始版本说明。
+
 配套归档与现场结论：[`docs/diagnostics/2026-10-07/README.md`](../docs/diagnostics/2026-10-07/README.md)。
 固件命令表与限值：[`firmware/chassis/MecanumPS2MotionDiagnostic/README.md`](../firmware/chassis/MecanumPS2MotionDiagnostic/README.md)。
 
@@ -140,18 +144,27 @@ python host\pulse_once.py --wheel FL --duty 128 --log logs\FL正向单次-今天
 按 `--gap` 间隔依次执行若干个命名组合，每个组合之间插入静止核查；任何 `ERR`、提前停止或
 手柄按键都会**中止整段序列，且不重试**。
 
+2026-10-07 后续增加 `--ramp`：仅允许 FWD/BACK，需固件 RAMPINFO 返回 triangle-v1。每个动作前半程逐步增加占空比、后半程逐步降低；主机约每 100ms 请求状态，检查四轮符号、同步幅度、峰值及上升/下降趋势。仅检查自报占空比，没有转速测量。默认固定占空比组合的行为保留。
+
 ```powershell
 # 只跑前进，10 秒，75.3% 占空比（架空观察用）
 python host\motion_sequence.py --moves FWD --duration 10000 --duty 192 --log logs\麦轮前进10秒.txt
 
 # 一次跑多个组合（每个组合只能出现一次）
 python host\motion_sequence.py --moves FWD BACK LEFT RIGHT --duration 2000 --duty 128 --gap 8 --log logs\四向2秒.txt
+
+# 四轮前进、后退各 10 秒：各自前 5 秒升、后 5 秒降；间隔 5 秒
+python host\motion_sequence.py --moves FWD BACK --ramp --duration 10000 --duty 192 --gap 5 --log logs\渐变正反10秒.txt
+
+# 四轮左右平移组合，各 10 秒，间隔 5 秒（架空只验证轮向）
+python host\motion_sequence.py --moves LEFT RIGHT --duration 10000 --duty 192 --gap 5 --log logs\左右平移10秒.txt
 ```
 
 | 参数 | 含义 |
 | --- | --- |
 | `--moves` | 一个或多个：`FWD` `BACK` `LEFT` `RIGHT` `FL` `FR` `BL` `BR` `CCW` `CW`（必填，同一组合不能重复） |
 | `--duration` | 每个组合时长 50..10000 ms，默认 10000 |
+| `--ramp` | FWD/BACK 渐变占空比，时长 1000..10000ms；其他组合不允许 |
 | `--duty` | 1..192，默认 192 |
 | `--prepare` | 首个组合前等待人工确认的秒数，0..30，默认 5 |
 | `--gap` | 组合之间的静止间隔，5..30 秒，默认 5 |

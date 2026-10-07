@@ -1,0 +1,26 @@
+0.000s TX STOP
+0.000s RX OK STOP LOCKED
+0.062s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+0.359s TX INFO
+0.359s RX INFO firmware=MecanumPS2-v1.1+diag-motion polarity=1,1,-1,-1 allCap=192 allMaxMs=300
+0.562s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+0.672s TX PULSEINFO
+0.672s RX PULSEINFO revision=single-2s maxDuty=255 maxMs=2000
+0.984s TX STATUS
+0.984s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+1.062s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+1.359s TX PULSE FL 192 2000
+1.359s RX OK PULSE FL duty=192 duration=2000ms fixedDuty=noRamp
+1.484s TX STATUS
+1.500s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=PULSE STBY=1 duty=192,0,0,0
+1.547s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=PULSE STBY=1 duty=192,0,0,0
+2.062s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=PULSE STBY=1 duty=192,0,0,0
+2.562s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=PULSE STBY=1 duty=192,0,0,0
+3.047s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=PULSE STBY=1 duty=192,0,0,0
+3.359s RX JOG DONE/STOP; LOCKED
+3.562s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+3.672s TX STOP
+3.672s RX OK STOP LOCKED
+3.922s TX STATUS
+3.922s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+4.047s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0

@@ -29,6 +29,29 @@ MOVES = {
 }
 INFO = "INFO firmware=MecanumPS2-v1.1+diag-motion polarity=1,1,-1,-1 allCap=192 allMaxMs=300"
 MOTIONINFO = "MOTIONINFO maxDuty=192 maxMs=10000"
+RAMPINFO = "RAMPINFO revision=triangle-v1 maxDuty=192 minMs=1000 maxMs=10000"
+
+
+def check_ramp_trace(samples, logical, cap):
+    """Validate reported signs, synchronization, bounds and both duty slopes."""
+    signs = [v * p for v, p in zip(logical, (1, 1, -1, -1))]
+    levels = []
+    for sample in samples:
+        level = abs(sample[0])
+        if not 0 <= level <= cap or sample != [s * level for s in signs]:
+            raise RuntimeError("Ramp reported direction, synchronization or bounds mismatch")
+        levels.append(level)
+    if len(levels) < 6:
+        raise RuntimeError("Too few ramp samples")
+    peak = max(levels)
+    index = levels.index(peak)
+    if peak < cap * 0.9 or levels[0] > cap * 0.3 or levels[-1] > cap * 0.3:
+        raise RuntimeError("Ramp start, peak or end not observed")
+    if any(b < a for a, b in zip(levels[:index], levels[1:index+1])):
+        raise RuntimeError("Ramp rising phase was not monotonic")
+    if any(b > a for a, b in zip(levels[index:], levels[index+1:])):
+        raise RuntimeError("Ramp falling phase was not monotonic")
+    return peak
 
 
 def main():
@@ -39,6 +62,7 @@ def main():
     ap.add_argument("--prepare", type=float, default=5)
     ap.add_argument("--gap", type=float, default=5)
     ap.add_argument("--log", required=True)
+    ap.add_argument("--ramp", action="store_true", help="FWD/BACK: triangular duty, 1000..10000ms")
     args = ap.parse_args()
     if not 50 <= args.duration <= 10000 or not 1 <= args.duty <= 192:
         ap.error("duration 50..10000ms; duty 1..192")
@@ -46,6 +70,9 @@ def main():
         ap.error("prepare 0..30s; gap 5..30s")
     if len(set(args.moves)) != len(args.moves):
         ap.error("each motion may be requested only once per sequence")
+    if args.ramp and (not 1000 <= args.duration <= 10000 or
+                      any(m not in ("FWD", "BACK") for m in args.moves)):
+        ap.error("--ramp requires FWD/BACK and duration 1000..10000ms")
     ports = [p.device for p in list_ports.comports()
              if (p.vid, p.pid) == (0x1A86, 0x7523)]
     if len(ports) != 1:
@@ -117,6 +144,10 @@ def main():
         send("MOTIONINFO")
         if MOTIONINFO not in collect(0.3):
             raise RuntimeError("Motion firmware limits mismatch")
+        if args.ramp:
+            send("RAMPINFO")
+            if RAMPINFO not in collect(0.3):
+                raise RuntimeError("Ramp firmware capability mismatch")
         idle()
         quiet(args.prepare)
         for index, motion in enumerate(args.moves):
@@ -128,9 +159,12 @@ def main():
                               for v, p in zip(logical, (1, 1, -1, -1)))
             note(f"BEGIN {index+1}/{len(args.moves)} {motion} {name}")
             sent_at = time.monotonic()
-            send(f"MOVEPULSE {motion} {args.duty} {args.duration}")
-            ack = f"OK MOVEPULSE {motion} duty={args.duty} duration={args.duration}ms fixedDuty=noRamp"
+            control = "RAMPPULSE" if args.ramp else "MOVEPULSE"
+            send(f"{control} {motion} {args.duty} {args.duration}")
+            profile = "profile=triangle" if args.ramp else "fixedDuty=noRamp"
+            ack = f"OK {control} {motion} duty={args.duty} duration={args.duration}ms {profile}"
             seen_ack = seen_active = seen_done = False
+            ramp_samples = []
 
             def inspect(lines):
                 nonlocal seen_ack, seen_active, seen_done
@@ -145,9 +179,18 @@ def main():
                         raise RuntimeError("Unexpected event; sequence aborted: " + line)
                     elif line.startswith("STATUS "):
                         reported = state(line)
-                        if reported == ("MOVEPULSE", "1", duties):
+                        if args.ramp and reported[0] == control:
+                            sample = list(map(int, reported[2].split(",")))
+                            level = abs(sample[0])
+                            expected = [v * level * p for v, p in zip(logical, (1, 1, -1, -1))]
+                            if (sample != expected or level > args.duty or
+                                    reported[1] != str(int(level > 0))):
+                                raise RuntimeError("Unexpected ramp state: " + line)
+                            ramp_samples.append(sample)
+                            seen_active |= level > 0
+                        elif reported == (control, "1", duties):
                             seen_active = True
-                        elif (reported == ("MOVEPULSE", "0", "0,0,0,0")
+                        elif (reported == (control, "0", "0,0,0,0")
                               and not seen_active and time.monotonic()-sent_at < 0.15):
                             # The command is accepted before the next <=10ms PWM tick.
                             # A periodic STATUS may expose this brief startup state.
@@ -165,10 +208,17 @@ def main():
             inspect(collect(0.08))
             send("STATUS")
             deadline = sent_at + args.duration/1000 + 0.7
+            next_status = time.monotonic() + 0.1
             while time.monotonic() < deadline and not seen_done:
-                inspect(collect(min(0.4, max(0, deadline-time.monotonic()))))
+                if args.ramp and time.monotonic() >= next_status:
+                    send("STATUS")
+                    next_status = time.monotonic() + 0.1
+                inspect(collect(min(0.06 if args.ramp else 0.4, max(0, deadline-time.monotonic()))))
             if not (seen_ack and seen_active and seen_done):
                 raise RuntimeError("Missing acceptance, active state or automatic expiry; no retry")
+            if args.ramp:
+                peak = check_ramp_trace(ramp_samples, logical, args.duty)
+                note(f"RAMP checked: {len(ramp_samples)} samples, peak={peak}; rise/fall and wheel signs matched")
             send("STOP")
             collect(0.2)
             idle()

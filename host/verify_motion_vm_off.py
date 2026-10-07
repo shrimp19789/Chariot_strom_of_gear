@@ -2,6 +2,7 @@
 
 These serial tests do not certify physical outputs, current or motor movement.
 """
+import argparse
 import re
 import time
 from pathlib import Path
@@ -12,6 +13,13 @@ from motion_sequence import MOVES
 
 
 def main():
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--log", required=True, help="new VM-off verification transcript path")
+    args = ap.parse_args()
+    log = Path(args.log)
+    if log.exists():
+        ap.error("log already exists; choose a new filename")
+    log.parent.mkdir(parents=True, exist_ok=True)
     ports = [p.device for p in list_ports.comports()
              if (p.vid, p.pid) == (0x1A86, 0x7523)]
     if len(ports) != 1:
@@ -79,6 +87,9 @@ def main():
         send("MOTIONINFO")
         if "MOTIONINFO maxDuty=192 maxMs=10000" not in collect(0.3):
             raise RuntimeError("Named-motion limits mismatch")
+        send("PULSEINFO")
+        if "PULSEINFO revision=single-2s maxDuty=255 maxMs=2000" not in collect(0.3):
+            raise RuntimeError("Single-wheel 2000ms limits mismatch")
         idle()
         for command in ("MOVEPULSE UNKNOWN 192 300", "MOVEPULSE FWD -192 300",
                         "MOVEPULSE FWD 0 300", "MOVEPULSE FWD 193 300",
@@ -130,12 +141,28 @@ def main():
                 raise RuntimeError(f"Invalid ALLPULSE not rejected: {command}")
             idle()
         polarity = [1, 1, -1, -1]
+        for command in ("PULSE FL 192 2001", "PULSE FL 192 49"):
+            send(command)
+            if "ERR PULSE/interlock; LOCKED" not in collect(0.25):
+                raise RuntimeError("Single-wheel duration boundary not rejected")
+            idle()
         for i, wheel in enumerate(("FL", "RL", "FR", "RR")):
-            duties = [0, 0, 0, 0]
-            duties[i] = 128 * polarity[i]
-            pulse(f"PULSE {wheel} 128 500",
-                  f"OK PULSE {wheel} duty=128 duration=500ms fixedDuty=noRamp",
-                  "PULSE", ",".join(map(str, duties)), 500)
+            for duty in (192, -192):
+                duties = [0, 0, 0, 0]
+                duties[i] = duty * polarity[i]
+                pulse(f"PULSE {wheel} {duty} 2000",
+                      f"OK PULSE {wheel} duty={duty} duration=2000ms fixedDuty=noRamp",
+                      "PULSE", ",".join(map(str, duties)), 2000)
+        idle()
+        send("PULSE FL 192 2000")
+        if "OK PULSE FL duty=192 duration=2000ms fixedDuty=noRamp" not in collect(0.08):
+            raise RuntimeError("Extended pulse STOP test not accepted")
+        send("STOP")
+        send("PULSE FL -192 2000")
+        stopped = collect(0.25)
+        if "OK STOP LOCKED" not in stopped or "ERR PULSE/interlock; LOCKED" not in stopped:
+            raise RuntimeError("Extended pulse STOP/cooldown failed")
+        idle()
         for duty in (192, -192):
             duties = ",".join(str(duty * p) for p in polarity)
             pulse(f"ALLPULSE {duty} 300",
@@ -181,7 +208,6 @@ def main():
             idle()
         finally:
             ser.close()
-            log = Path(__file__).resolve().parents[1] / "logs" / "麦轮运动组合诊断-VM关闭验证-2026-10-07.txt"
             log.write_text("\n".join(transcript) + "\n", encoding="utf-8")
 
 

@@ -1,5 +1,5 @@
 """One bounded pulse, only after human confirms wiring, clearance and VM state.
-Selected wheel: 500ms; ALL: 300ms on the calibrated diagnostic firmware.
+Selected wheel: default 500ms, up to 2000ms with PULSEINFO capability; ALL: 300ms maximum.
 
 Serial STATUS verifies reported firmware state, not physical voltage or motion.
 No retry of a movement command. STOP is attempted in cleanup.
@@ -19,13 +19,16 @@ def main():
     ap.add_argument("--duty", required=True, type=int)
     ap.add_argument("--log", required=True)
     ap.add_argument("--prepare", type=float, default=5)
+    ap.add_argument("--duration", type=int, help="milliseconds; default single=500, ALL=300")
     args = ap.parse_args()
     if not 1 <= abs(args.duty) <= 255 or not 0 <= args.prepare <= 30:
         ap.error("nonzero duty within ±255; preparation within 0..30 seconds")
     is_all = args.wheel == "ALL"
     if is_all and abs(args.duty) > 192:
         ap.error("ALL duty must be within ±192")
-    duration = 300 if is_all else 500
+    duration = args.duration if args.duration is not None else (300 if is_all else 500)
+    if not 50 <= duration <= (300 if is_all else 2000):
+        ap.error("duration must be 50..300 for ALL or 50..2000 for a single wheel")
     ports = [p.device for p in list_ports.comports()
              if (p.vid, p.pid) == (0x1A86, 0x7523)]
     if len(ports) != 1:
@@ -35,6 +38,7 @@ def main():
     ser.rts = False
     ser.port = ports[0]
     transcript = []
+    received = []
     started = time.monotonic()
 
     def send(command):
@@ -54,6 +58,7 @@ def main():
                 if line:
                     row = f"{time.monotonic()-started:.3f}s RX {line}"
                     transcript.append(row)
+                    received.append((time.monotonic(), line))
                     print(row, flush=True)
                     lines.append(line)
         return lines
@@ -83,14 +88,19 @@ def main():
                 raise RuntimeError("ALL firmware/limits mismatch")
         elif is_all or "ERR command/interlock; LOCKED" not in info_lines:
             raise RuntimeError("Missing diagnostic INFO")
+        if not is_all and duration > 500:
+            send("PULSEINFO")
+            if "PULSEINFO revision=single-2s maxDuty=255 maxMs=2000" not in collect(0.3):
+                raise RuntimeError("Firmware does not confirm 2000ms single-wheel capability")
         collect(args.prepare)
         send("STATUS")
         check_idle(collect(0.35))
         command = f"ALLPULSE {args.duty} {duration}" if is_all else f"PULSE {args.wheel} {args.duty} {duration}"
+        pulse_started = time.monotonic()
         send(command)
         initial = collect(0.12)
         send("STATUS")
-        during = collect(0.65)
+        during = collect(duration / 1000 + 0.15)
         prefix = "ALLPULSE" if is_all else f"PULSE {args.wheel}"
         ack = f"OK {prefix} duty={args.duty} duration={duration}ms fixedDuty=noRamp"
         if ack not in initial + during:
@@ -105,6 +115,10 @@ def main():
             raise RuntimeError("Selected-wheel reported duty not observed")
         if "JOG DONE/STOP; LOCKED" not in during:
             raise RuntimeError("Automatic expiry not observed")
+        endings = [at for at, line in received
+                   if at >= pulse_started and line == "JOG DONE/STOP; LOCKED"]
+        if not endings or abs(endings[0] - pulse_started - duration / 1000) > 0.15:
+            raise RuntimeError("Reported expiry timing differs from requested duration")
     finally:
         try:
             send("STOP")
