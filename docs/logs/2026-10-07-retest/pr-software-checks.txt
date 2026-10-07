@@ -1,0 +1,20 @@
+2026-10-07 PR preparation, no serial port opened or motor action issued.
+Current profile: start30s-v3; powered calibration FAILED (three wheels stopped early).
+
+Python 3.14 workspace venv, pyserial installed; -X utf8 -B.
+python -m unittest discover -s tests -p 'test_*host.py'
+Ran 11 tests in 0.034s: OK.
+python -m unittest discover -s tests -p 'test_ramp_trace.py'
+Ran 6 tests in 0.004s: OK.
+Total: 17 tests passed.
+
+Earlier current-v3 checks recorded in 占空比补偿-30秒视频校准.md:
+- ESP32 Arduino core 3.3.12 compile and COM4 upload/verification completed.
+- Current-v3 wheel compensation C++ firmware simulation passed.
+- New startup simulation executable and one later motion regression executable
+  were blocked by Windows application control; not counted as passed.
+- VM-off board checks covered startup/hold phases, expiry, STOP and guards.
+- Software/state checks do not establish real wheel speed or motor motion.
+
+No build binaries, object files, caches, virtual environment or local config
+are part of this PR. Left-rear hold-duty-180 physical result remains pending.

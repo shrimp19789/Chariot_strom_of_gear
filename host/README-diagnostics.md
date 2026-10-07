@@ -208,3 +208,25 @@ python host\motion_sequence.py --moves FWD --duration 30000 --duty 192 --prepare
   **不覆盖**：实际电流、VM 跌落、转速、轮子是否真的转、温升、以及快速瞬态。
 - 插拔串口前先 `STOP`；脚本在 `finally` 里会补发 `STOP` 并再确认一次空闲。
 - 归档中"只看见某一轮转"这类结论来自操作员现场观察，不在这些日志里，不能由日志反推。
+
+## 30 秒视频轮速补偿
+
+`motion_sequence.py` 新增 `--compensate`，当前需板上 `COMPINFO revision=start30s-v3` 能力，基准 192 的前进报告应为 `123,108,-144,-192`。无此参数时明确关闭补偿，结束后也尝试关闭。输出校验和渐变检查采用各轮比例，不要求四轮 PWM 幅值相同。此配置已在带动力短测中失败（三轮提前停转），仅保留诊断复现，不能当作同速参数。日志拒绝覆盖。示例仅核查软件状态，实体动力须关闭：
+
+```text
+python host/motion_sequence.py --moves FWD --duration 2000 --duty 192 --compensate --log logs/compensated-v3-vm-off-new.txt
+```
+
+`verify_motion_vm_off.py` 增加原始/补偿两种轮组检查，仍须实体关闭动力。详细参数与实测状态见 [补偿记录](../docs/logs/2026-10-07-retest/占空比补偿-30秒视频校准.md)。
+
+## 单轮起转与维持测试
+
+`pulse_once.py --startup` 单轮模式总时长 500..2000ms，先核查 STARTPULSEINFO 能力，分别检查起转 255 与指定维持值的报告，并核查到期和停止；不自动重试。动力关闭时先验证软件阶段，动力开启时沿用架空与 6V 条件。
+
+```text
+python host/pulse_once.py --wheel RR --duty 192 --duration 2000 --startup --audible --prepare 5 --log docs/logs/2026-10-07-retest/rr-start-hold-powered.txt
+```
+
+`--audible` 在 Windows 用 WAV 提示，开始高音结束后才发送运动命令，到期回报后播放低音。音频播放和界面耗时不等于电机输出时长，回报时戳在结束音前记录；提示音也不证明实体轮动。日志采用新的文件名以保存各轮证据。
+
+四轮扩展：`--wheel ALL --startup` 发送 STARTMOVE FWD，默认强制核查补偿关闭；增加 `--compensate` 则核查精确 v3 配置、保持 255 起转阶段、补偿维持阶段，并在结束时关闭补偿。此模式仅正向、维持值 1..192、总时长 500..30000ms，默认 2000ms；原始 ALLPULSE 仍最大 300ms。先执行 `verify_startup_vm_off.py --log 新日志路径`（实体关闭动力），再确认架空、6V、松键、待机不动后执行一次 `pulse_once.py --wheel ALL --startup --duty 192 --duration 2000 --audible --log 新日志路径`。

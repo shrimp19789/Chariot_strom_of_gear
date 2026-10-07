@@ -1,0 +1,110 @@
+0.001s TX STOP
+0.005s RX OK STOP LOCKED
+0.363s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+0.363s TX INFO
+0.373s RX INFO firmware=MecanumPS2-v1.1+diag-motion polarity=1,1,-1,-1 allCap=192 allMaxMs=300
+0.682s TX STARTMOVEINFO
+0.695s RX STARTMOVEINFO revision=kick300-fwd-v1 startDuty=255 startMs=300 maxDuty=192 minMs=500 maxMs=30000
+0.863s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+1.041s TX COMP OFF
+1.047s RX OK COMP OFF; LOCKED
+1.351s TX COMPINFO
+1.365s RX COMPINFO revision=video30s-v2 enabled=0 gain=1/1,1/1,30/27,30/24 maxDuty=240 scope=motion,ramp,ps2
+1.370s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+1.870s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+2.370s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+2.870s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+3.370s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+3.870s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+4.370s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+4.870s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+5.370s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+5.870s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+6.370s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+6.678s TX STATUS
+6.687s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+6.870s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+10.411s TX STARTMOVE FWD 192 30000
+10.412s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+10.412s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+10.413s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+10.413s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+10.413s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+10.414s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+10.414s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+10.423s RX OK STARTMOVE FWD duty=192 duration=30000ms startDuty=255 startMs=300
+10.542s TX STATUS
+10.553s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=255,255,-255,-255
+10.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+11.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+11.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+12.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+12.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+13.371s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+13.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+14.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+14.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+15.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+15.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+16.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+16.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+17.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+17.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+18.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+18.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+19.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+19.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+20.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+20.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+21.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+21.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+22.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+22.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+23.371s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+23.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+24.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+24.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+25.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+25.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+26.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+26.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+27.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+27.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+28.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+28.871s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+29.371s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+29.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+30.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+30.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+31.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+31.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+32.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+32.871s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+33.371s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+33.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+34.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+34.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+35.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+35.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+36.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+36.871s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+37.371s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+37.871s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+38.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+38.872s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+39.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+39.871s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+40.372s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=STARTMOVE STBY=1 duty=192,192,-192,-192
+40.422s RX JOG DONE/STOP; LOCKED
+43.775s TX STOP
+43.775s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+43.776s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+43.776s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+43.776s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+43.777s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+43.777s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+43.780s RX OK STOP LOCKED
+43.870s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+43.993s TX STATUS
+44.002s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0
+44.370s RX STATUS hw=1 ps=1 mode=41 buttons=0000 control=LOCKED STBY=0 duty=0,0,0,0

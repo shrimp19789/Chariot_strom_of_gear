@@ -9,7 +9,7 @@ from pathlib import Path
 
 import serial
 from serial.tools import list_ports
-from motion_sequence import MOVES
+from motion_sequence import MOVES, COMPINFO, wheel_duties
 
 
 def main():
@@ -79,6 +79,12 @@ def main():
         print(f"VM OFF checks only; port={ports[0]}", flush=True)
         send("STOP")
         collect(0.35)
+        send("COMP OFF")
+        if "OK COMP OFF; LOCKED" not in collect(0.3):
+            raise RuntimeError("Compensation raw mode not acknowledged")
+        send("COMPINFO")
+        if COMPINFO.format(enabled=0) not in collect(0.3):
+            raise RuntimeError("Compensation capabilities mismatch")
         send("INFO")
         info = collect(0.35)
         expected_info = "INFO firmware=MecanumPS2-v1.1+diag-motion polarity=1,1,-1,-1 allCap=192 allMaxMs=300"
@@ -200,13 +206,31 @@ def main():
         if "ERR ALLPULSE/interlock; LOCKED" not in collect(0.25):
             raise RuntimeError("Remote-mode interlock failed")
         idle()
-        print("PASS: 10 named motions plus calibrated selected/all states, limits, expiry, overlap, STOP, cooldown, remote interlock.", flush=True)
+        # Compensation is opt-in; query its exact profile before state tests.
+        send("COMP ON")
+        if "OK COMP ON; LOCKED" not in collect(0.3):
+            raise RuntimeError("Compensation enable not acknowledged")
+        send("COMPINFO")
+        if COMPINFO.format(enabled=1) not in collect(0.3):
+            raise RuntimeError("Compensation profile mismatch")
+        for motion, (_, logical) in MOVES.items():
+            duties = ",".join(map(str, wheel_duties(logical, 192, True)))
+            pulse(f"MOVEPULSE {motion} 192 300",
+                  f"OK MOVEPULSE {motion} duty=192 duration=300ms fixedDuty=noRamp",
+                  "MOVEPULSE", duties, 300)
+        send("COMP OFF")
+        if "OK COMP OFF; LOCKED" not in collect(0.3):
+            raise RuntimeError("Compensation disable not acknowledged")
+        print("PASS: raw and trimmed named motions, selected/all states, limits, expiry, overlap, STOP, cooldown, remote interlock.", flush=True)
         transcript.append("PASS: VM OFF; reported software states only; no powered four-wheel test.")
     finally:
         try:
             send("STOP")
             collect(0.2)
             idle()
+            send("COMP OFF")
+            if "OK COMP OFF; LOCKED" not in collect(0.3):
+                raise RuntimeError("Compensation reset not acknowledged")
         finally:
             ser.close()
             log.write_text("\n".join(transcript) + "\n", encoding="utf-8")
