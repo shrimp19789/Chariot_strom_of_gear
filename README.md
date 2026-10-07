@@ -283,15 +283,42 @@ python tools\mcp-bridge\test_mcp.py                # 验证 MCP 协议
 
 ### 9.1 模块 README（与总入口互相链接）
 
-根 `README.md` 是**总入口**。下表每个目录各带自己的 `README.md`，其顶部都有返回总入口的导航块，模块之间也互相链接。
+根 `README.md` 是**总入口**。下列**每个 sketch / 诊断目录各带自己的 `README.md`**，其顶部都有返回总入口的导航块，模块之间也互相链接。
+
+**投掷机构**
 
 | 模块 README | 内容 |
 |---|---|
-| [`firmware/chassis/MecanumPS2/README.md`](firmware/chassis/MecanumPS2/README.md) | 【底盘主线】两线法麦轮 + PS2 固件：命令表、占空比/时限、安全边界 |
-| [`firmware/chassis/MecanumPS2MotionDiagnostic/README.md`](firmware/chassis/MecanumPS2MotionDiagnostic/README.md) | 4 个架空限时诊断固件的版本 / 极性 / 命令对照与构建方式 |
+| [`firmware/catapult/PS2Catapult/README.md`](firmware/catapult/PS2Catapult/README.md) | 【投掷主线】PS2 遥控 + 蓄力 + 90° 往返：引脚、命令、配置锁、安全红线 |
+| [`firmware/catapult/Stage1_AS5600Test/README.md`](firmware/catapult/Stage1_AS5600Test/README.md) | 第一阶段：只读编码器 + I2C 电气诊断（`G`/`W`/`L`/`P` 命令） |
+| [`firmware/catapult/Stage2_FOCClosedLoop/README.md`](firmware/catapult/Stage2_FOCClosedLoop/README.md) | 第二阶段：闭环空载测试，与解除配置锁前的核对清单 |
+
+**行驶底盘（TB6612 两线法，当前方案）**
+
+| 模块 README | 内容 |
+|---|---|
+| [`firmware/chassis/MecanumPS2/README.md`](firmware/chassis/MecanumPS2/README.md) | 【底盘主线】两线法麦轮 + PS2：命令表、占空比/时限、安全边界 |
+| [`firmware/chassis/MecanumPS2MotionDiagnostic/README.md`](firmware/chassis/MecanumPS2MotionDiagnostic/README.md) | ★ 当前诊断版：4 个诊断固件的版本/极性/命令总表 + `MOVEPULSE` |
 | [`firmware/chassis/TB6612LogicCheck/README.md`](firmware/chassis/TB6612LogicCheck/README.md) | 第 2 步逻辑验收固件（只回读引脚，不含使能与运动） |
+| [`firmware/chassis/MecanumPS2FourWheelDiagnostic/README.md`](firmware/chassis/MecanumPS2FourWheelDiagnostic/README.md) | 历史：首版装车校准（极性 `{1,1,-1,-1}`）+ `ALLPULSE` 四轮同时脉冲 |
+| [`firmware/chassis/MecanumPS2WheelDiagnostic/README.md`](firmware/chassis/MecanumPS2WheelDiagnostic/README.md) | 历史：四标签单轮 `PULSE`（极性仍未校准） |
+| [`firmware/chassis/MecanumPS2Diagnostic/README.md`](firmware/chassis/MecanumPS2Diagnostic/README.md) | 历史：只允许 `PULSE RL` 的单轮脉冲 |
+
+**工具与记录**
+
+| 模块 README | 内容 |
+|---|---|
 | [`host/README-diagnostics.md`](host/README-diagnostics.md) | 诊断上位机脚本：前置条件、固件配对、逐脚本用法、证据边界 |
 | [`docs/diagnostics/2026-10-07/README.md`](docs/diagnostics/2026-10-07/README.md) | ★ TB6612 四轮排错索引：现场结论表、证据边界、下一步待测 |
+
+**⚠️ 已让位的奇果派 PCA9685（仅备选，烧到 TB6612 无反应）**
+
+| 模块 README | 内容 |
+|---|---|
+| [`firmware/chassis/MotorLinkCheck/README.md`](firmware/chassis/MotorLinkCheck/README.md) | 链路自检：写回读 PCA9685 寄存器；含可选 ACS712 电流检测 |
+| [`firmware/chassis/MotorDriver/README.md`](firmware/chassis/MotorDriver/README.md) | 简易驱动：ASCII + 二进制双协议、看门狗、8 路舵机 |
+
+> **覆盖情况**：`firmware/` 下 11 个 sketch 目录现已全部带 `README.md`（另有 `host/` 与 `docs/diagnostics/` 各 1 个）。
 
 ### 9.2 文档表
 
