@@ -93,7 +93,8 @@ def main():
         idle()
         for command in ("MOVEPULSE UNKNOWN 192 300", "MOVEPULSE FWD -192 300",
                         "MOVEPULSE FWD 0 300", "MOVEPULSE FWD 193 300",
-                        "MOVEPULSE FWD 192 49", "MOVEPULSE FWD 192 10001",
+                        "MOVEPULSE FWD 192 49", "MOVEPULSE FWD 192 30001",
+                        "MOVEPULSE BACK 192 10001",
                         "MOVEPULSE FWD 192 300 extra"):
             send(command)
             if "ERR MOVEPULSE/interlock; LOCKED" not in collect(0.25):

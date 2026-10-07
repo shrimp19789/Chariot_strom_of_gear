@@ -17,6 +17,7 @@ constexpr int JOG_CAP=128; // Preserve original JOG ceiling.
 constexpr int ALL_PULSE_CAP=192; // 75.3%, bench diagnostic only; not a current limit.
 constexpr int ALL_PULSE_MAX_MS=300; // Software timeout, not independent hardware timing.
 constexpr int MOTION_PULSE_MAX_MS=10000; // Bench observation, software timeout.
+constexpr int FORWARD_PULSE_MAX_MS=30000; // Explicit FWD observation only.
 constexpr int SINGLE_PULSE_MAX_MS=2000; // Extended single-wheel bench observation.
 constexpr int RAMP_PULSE_MIN_MS=1000, RAMP_PULSE_MAX_MS=10000;
 constexpr uint16_t UP=1<<4, RIGHT=1<<5, DOWN=1<<6, LEFT=1<<7;
@@ -110,6 +111,7 @@ void command() {
   else if(!strcmp(line,"STATUS")) printStatus();
   else if(!strcmp(line,"INFO")) printInfo();
   else if(!strcmp(line,"MOTIONINFO")) Serial.printf("MOTIONINFO maxDuty=%d maxMs=%d\n",ALL_PULSE_CAP,MOTION_PULSE_MAX_MS);
+  else if(!strcmp(line,"FORWARDINFO")) Serial.printf("FORWARDINFO revision=forward-30s maxDuty=%d maxMs=%d\n",ALL_PULSE_CAP,FORWARD_PULSE_MAX_MS);
   else if(!strcmp(line,"PULSEINFO")) Serial.printf("PULSEINFO revision=single-2s maxDuty=255 maxMs=%d\n",SINGLE_PULSE_MAX_MS);
   else if(!strcmp(line,"RAMPINFO")) Serial.printf("RAMPINFO revision=triangle-v1 maxDuty=%d minMs=%d maxMs=%d\n",ALL_PULSE_CAP,RAMP_PULSE_MIN_MS,RAMP_PULSE_MAX_MS);
   else if(!strcmp(line,"PS2")) {
@@ -137,7 +139,7 @@ void command() {
     for(size_t i=0;i<sizeof(MOTIONS)/sizeof(MOTIONS[0]);++i)
       if(!strcmp(name,MOTIONS[i].name)) index=int(i);
     if(n==3 && index>=0 && duty>=1 && duty<=ALL_PULSE_CAP &&
-       duration>=50 && duration<=MOTION_PULSE_MAX_MS && hardwareOK && freshPS() && buttons==0 &&
+       duration>=50 && duration<=(!strcmp(name,"FWD")?FORWARD_PULSE_MAX_MS:MOTION_PULSE_MAX_MS) && hardwareOK && freshPS() && buttons==0 &&
        !remoteEnabled && !jogging && allWheelsQuiet()) {
       stopDrive();
       mixMecanum(MOTIONS[index].y,MOTIONS[index].x,MOTIONS[index].r,duty,motionTarget);
@@ -237,6 +239,7 @@ void setup() {
   Serial.println("DIAGNOSTIC: PULSE FL/RL/FR/RR signedDuty(1..255) ms(50..2000); PULSEINFO revision=single-2s; fixed duty, no ramp; single wheel only");
   Serial.println("DIAGNOSTIC: ALLPULSE signedDuty(1..192) ms(50..300); bench only");
   Serial.println("DIAGNOSTIC: MOVEPULSE FWD/BACK/LEFT/RIGHT/FL/FR/BL/BR/CCW/CW duty(1..192) ms(50..10000); bench only");
+  Serial.println("DIAGNOSTIC: FWD extended to 30000ms; FORWARDINFO revision=forward-30s; other motions unchanged");
   Serial.println("DIAGNOSTIC: RAMPPULSE FWD/BACK peakDuty(1..192) ms(1000..10000); RAMPINFO; triangle duty, no speed feedback");
   printInfo();
   printStatus();

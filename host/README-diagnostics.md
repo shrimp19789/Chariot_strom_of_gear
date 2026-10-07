@@ -146,6 +146,8 @@ python host\pulse_once.py --wheel FL --duty 128 --log logs\FL正向单次-今天
 
 2026-10-07 后续增加 `--ramp`：仅允许 FWD/BACK，需固件 RAMPINFO 返回 triangle-v1。每个动作前半程逐步增加占空比、后半程逐步降低；主机约每 100ms 请求状态，检查四轮符号、同步幅度、峰值及上升/下降趋势。仅检查自报占空比，没有转速测量。默认固定占空比组合的行为保留。
 
+随后按胶带计圈和电压测量请求增加固定前进 30 秒：只有 `--moves FWD` 且不加 `--ramp` 才允许 `--duration 30000`；超过 10 秒必须查询 FORWARDINFO 确认 forward-30s 能力。其他组合仍至多 10 秒。
+
 ```powershell
 # 只跑前进，10 秒，75.3% 占空比（架空观察用）
 python host\motion_sequence.py --moves FWD --duration 10000 --duty 192 --log logs\麦轮前进10秒.txt
@@ -158,12 +160,15 @@ python host\motion_sequence.py --moves FWD BACK --ramp --duration 10000 --duty 1
 
 # 四轮左右平移组合，各 10 秒，间隔 5 秒（架空只验证轮向）
 python host\motion_sequence.py --moves LEFT RIGHT --duration 10000 --duty 192 --gap 5 --log logs\左右平移10秒.txt
+
+# 四轮同时固定前进 30 秒，约 75.3%；单次用于胶带计圈与电压测量
+python host\motion_sequence.py --moves FWD --duration 30000 --duty 192 --prepare 5 --log logs\四轮前进30秒.txt
 ```
 
 | 参数 | 含义 |
 | --- | --- |
 | `--moves` | 一个或多个：`FWD` `BACK` `LEFT` `RIGHT` `FL` `FR` `BL` `BR` `CCW` `CW`（必填，同一组合不能重复） |
-| `--duration` | 每个组合时长 50..10000 ms，默认 10000 |
+| `--duration` | 每个组合时长 50..10000 ms，默认 10000；单独固定 FWD 可至 30000ms |
 | `--ramp` | FWD/BACK 渐变占空比，时长 1000..10000ms；其他组合不允许 |
 | `--duty` | 1..192，默认 192 |
 | `--prepare` | 首个组合前等待人工确认的秒数，0..30，默认 5 |

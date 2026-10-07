@@ -10,6 +10,8 @@
 
 本轮已执行前进/后退渐变、左移/右移组合各 10 秒，串口检查通过，实物结果待现场回填，见 [渐变与左右组合记录](../../../docs/logs/2026-10-07-retest/四轮渐变与左右平移10秒.md)。
 
+为用户要求的胶带计圈与电压测量，固定占空比 `MOVEPULSE FWD` 单独扩展至 30000ms；`FORWARDINFO` 返回 `revision=forward-30s maxDuty=192 maxMs=30000`。其他运动组合及渐变上限保留为 10000ms。
+
 基于原 `MecanumPS2` 的提交 `c76249435cf63825123c24b832abb2f966b35686`。IN GPIO、两线法、PS2、20kHz/8bit PWM、原 PS2 上限 76 与 JOG 上限 128 保留；新增固定占空比命令不走原爬升。装车极性为 `{1,1,-1,-1}`，顺序 FL,RL,FR,RR。投掷 EN/相线保持低，AS5600 未使用。
 
 ## 命令及版本
@@ -30,7 +32,8 @@
 | `PULSE FL\|RL\|FR\|RR duty ms` | duty 为非零 ±1..255；ms=50..2000 |
 | `PULSEINFO` | 单轮诊断修订及占空比、时限上限 |
 | `ALLPULSE duty ms` | duty 为非零 ±1..192；ms=50..300 |
-| `MOVEPULSE name duty ms` | name=FWD/BACK/LEFT/RIGHT/FL/FR/BL/BR/CCW/CW；duty=1..192；ms=50..10000 |
+| `MOVEPULSE name duty ms` | name=FWD/BACK/LEFT/RIGHT/FL/FR/BL/BR/CCW/CW；duty=1..192；ms=50..10000，FWD 单独允许至 30000 |
+| `FORWARDINFO` | `revision=forward-30s maxDuty=192 maxMs=30000` |
 | `RAMPPULSE FWD\|BACK peakDuty ms` | peakDuty=1..192；ms=1000..10000；前半程升、后半程降 |
 | `RAMPINFO` | `revision=triangle-v1 maxDuty=192 minMs=1000 maxMs=10000` |
 

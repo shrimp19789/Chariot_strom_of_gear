@@ -30,6 +30,7 @@ MOVES = {
 INFO = "INFO firmware=MecanumPS2-v1.1+diag-motion polarity=1,1,-1,-1 allCap=192 allMaxMs=300"
 MOTIONINFO = "MOTIONINFO maxDuty=192 maxMs=10000"
 RAMPINFO = "RAMPINFO revision=triangle-v1 maxDuty=192 minMs=1000 maxMs=10000"
+FORWARDINFO = "FORWARDINFO revision=forward-30s maxDuty=192 maxMs=30000"
 
 
 def check_ramp_trace(samples, logical, cap):
@@ -64,8 +65,9 @@ def main():
     ap.add_argument("--log", required=True)
     ap.add_argument("--ramp", action="store_true", help="FWD/BACK: triangular duty, 1000..10000ms")
     args = ap.parse_args()
-    if not 50 <= args.duration <= 10000 or not 1 <= args.duty <= 192:
-        ap.error("duration 50..10000ms; duty 1..192")
+    max_duration = 30000 if args.moves == ["FWD"] and not args.ramp else 10000
+    if not 50 <= args.duration <= max_duration or not 1 <= args.duty <= 192:
+        ap.error("duration 50..10000ms (single fixed FWD up to 30000ms); duty 1..192")
     if not 0 <= args.prepare <= 30 or not 5 <= args.gap <= 30:
         ap.error("prepare 0..30s; gap 5..30s")
     if len(set(args.moves)) != len(args.moves):
@@ -144,6 +146,10 @@ def main():
         send("MOTIONINFO")
         if MOTIONINFO not in collect(0.3):
             raise RuntimeError("Motion firmware limits mismatch")
+        if args.duration > 10000:
+            send("FORWARDINFO")
+            if FORWARDINFO not in collect(0.3):
+                raise RuntimeError("Forward 30-second firmware capability mismatch")
         if args.ramp:
             send("RAMPINFO")
             if RAMPINFO not in collect(0.3):

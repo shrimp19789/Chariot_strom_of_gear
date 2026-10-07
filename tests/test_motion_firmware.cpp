@@ -67,5 +67,21 @@ int main() {
   send("STOP"); tickAt(millis()+500); send("MOVEPULSE RIGHT 192 10000"); tickAt(millis()+100);
   for(int i=0;i<4;++i) assert(wheels[i].value==-left[i]);
   send("STOP"); idleOutputs();
+  tickAt(millis()+500);
+  assert(send("FORWARDINFO").find("forward-30s maxDuty=192 maxMs=30000")!=std::string::npos);
+  for(const char *badMove:{"MOVEPULSE FWD 192 30001","MOVEPULSE BACK 192 10001",
+                         "MOVEPULSE LEFT 192 30000","MOVEPULSE FWD 193 30000"}) {
+    assert(send(badMove).find("ERR MOVEPULSE")!=std::string::npos); idleOutputs();
+  }
+  uint32_t start=millis();
+  assert(send("MOVEPULSE FWD 192 30000").find("OK MOVEPULSE")!=std::string::npos);
+  for(uint32_t t=10;t<30000;t+=10) {
+    tickAt(start+t); assert(jogging && simulatedPins[STBY]==1);
+    for(int i=0;i<4;++i) assert(wheels[i].value==192*POLARITY[i]);
+  }
+  tickAt(start+30000); idleOutputs(); assert(!allWheelsQuiet());
+  tickAt(millis()+500); send("MOVEPULSE FWD 192 30000"); tickAt(millis()+5000);
+  send("STOP"); idleOutputs();
   puts("PASS: actual firmware ramp PWM, expiry, bounds, STOP/cooldown, overlap, PS2/button guards and lateral signs");
+  puts("PASS: fixed FWD 30s, calibrated duties, exact expiry, STOP and direction-specific limits");
 }
